@@ -13,7 +13,7 @@ const Banner = () => {
       showThumbs={true}
       showStatus={false}
       autoPlay={true}
-      interval={3000}
+      interval={1500}
     >
       <div>
         <img src={img1} className="carousel-image" alt="Image 1" />
