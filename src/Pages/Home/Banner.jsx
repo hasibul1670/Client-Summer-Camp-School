@@ -8,13 +8,16 @@ import img3 from "../../assets/home/03.jpg";
 import img4 from "../../assets/home/06.jpg";
 import img5 from "../../assets/home/07.jpg";
 import ImagePreLoader from "./../../Helpers/ImagePreLoader";
+import LocalStorageImg from "../../Helpers/LocalStorageImg";
 
 const Banner = () => {
   const imageUrls = [img1, img2, img3, img4, img5];
 
   return (
     <>
+
       <ImagePreLoader imageUrls={imageUrls} />
+      <LocalStorageImg imageUrls={imageUrls} />
       <Carousel
         showThumbs={true}
         showStatus={false}

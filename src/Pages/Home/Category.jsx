@@ -10,10 +10,10 @@ import { default as slide1, default as slide4 } from "../../assets/home/01.jpg";
 import slide2 from "../../assets/home/02.png";
 import { default as slide3, default as slide5 } from "../../assets/home/03.jpg";
 import slide6 from "../../assets/home/06.jpg";
-
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import ImagePreLoader from "../../Helpers/ImagePreLoader";
+import LocalStorageImg from "../../Helpers/LocalStorageImg";
 
 const Category = () => {
   const imageUrls = [slide1, slide2, slide3, slide4, slide5, slide6];
@@ -24,6 +24,7 @@ const Category = () => {
         heading={"Enroll in Courses "}
       ></SectionTitle>
       <ImagePreLoader imageUrls={imageUrls} />
+      <LocalStorageImg imageUrls={imageUrls} />
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
