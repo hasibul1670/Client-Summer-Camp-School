@@ -19,11 +19,11 @@ const Category = () => {
         centeredSlides={true}
         modules={[Pagination]}
         autoplay={{ delay: 1000 }} // Adjust the delay as desired (in milliseconds)
-        className="mySwiper mb-24"
+        className="mySwiper mb-24 "
       >
         <SwiperSlide>
           <Link to=" course/programming">
-            <div className="card card-side justify-center w-64 border-solid border-2 border-sky-500 shadow-xl">
+            <div className="card  card-side justify-center mx-auto  border-solid border-2 border-sky-500 shadow-xl ">
               <div className="card-body">
                 <h2 className="card-title">New movie is released!</h2>
                 <p>Click the button to Enroll on Jetflix app.</p>
@@ -36,7 +36,7 @@ const Category = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Link to=" course/programming">
-            <div className="card card-side justify-center w-64 border-solid border-2 border-sky-500 shadow-xl">
+          <div className="card  card-side justify-center mx-auto  border-solid border-2 border-sky-500 shadow-xl ">
               <div className="card-body">
                 <h2 className="card-title">New movie is released!</h2>
                 <p>Click the button to Enroll on Jetflix app.</p>
@@ -49,7 +49,7 @@ const Category = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Link to=" course/programming">
-            <div className="card card-side justify-center w-64 border-solid border-2 border-sky-500 shadow-xl">
+          <div className="card  card-side justify-center mx-auto  border-solid border-2 border-sky-500 shadow-xl ">
               <div className="card-body">
                 <h2 className="card-title">New movie is released!</h2>
                 <p>Click the button to Enroll on Jetflix app.</p>
@@ -60,9 +60,10 @@ const Category = () => {
             </div>
           </Link>
         </SwiperSlide>
+
         <SwiperSlide>
           <Link to=" course/programming">
-            <div className="card card-side justify-center w-64 border-solid border-2 border-sky-500 shadow-xl">
+          <div className="card  card-side justify-center mx-auto  border-solid border-2 border-sky-500 shadow-xl ">
               <div className="card-body">
                 <h2 className="card-title">New movie is released!</h2>
                 <p>Click the button to Enroll on Jetflix app.</p>
@@ -73,9 +74,10 @@ const Category = () => {
             </div>
           </Link>
         </SwiperSlide>
+
         <SwiperSlide>
           <Link to=" course/programming">
-            <div className="card card-side justify-center w-64 border-solid border-2 border-sky-500 shadow-xl">
+          <div className="card  card-side justify-center mx-auto  border-solid border-2 border-sky-500 shadow-xl ">
               <div className="card-body">
                 <h2 className="card-title">New movie is released!</h2>
                 <p>Click the button to Enroll on Jetflix app.</p>
@@ -86,6 +88,8 @@ const Category = () => {
             </div>
           </Link>
         </SwiperSlide>
+
+
       </Swiper>
     </section>
   );
