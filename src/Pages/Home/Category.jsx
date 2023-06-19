@@ -11,35 +11,39 @@ import slide2 from "../../assets/home/02.png";
 import { default as slide3, default as slide5 } from "../../assets/home/03.jpg";
 import slide6 from "../../assets/home/06.jpg";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
+import ImagePreLoader from "../../Helpers/ImagePreLoader";
 
 const Category = () => {
+  const imageUrls = [slide1, slide2, slide3, slide4, slide5, slide6];
   return (
     <section>
       <SectionTitle
         subHeading={"Enroll -&- Learn- "}
-        heading={"Enroll in Courses "}
+        heading={"Enroll Courses "}
       ></SectionTitle>
+      <ImagePreLoader imageUrls={imageUrls} />
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
         loop={true}
         centeredSlides={true}
         modules={[Pagination]}
-        autoplay={{ delay: 1000 }} // Adjust the delay as desired (in milliseconds)
+        autoplay={{ delay: 1000 }}
         className="mySwiper mb-24"
       >
         <SwiperSlide>
           <Link to=" course/programming">
-            <img src={slide1} alt="" />
-            <h3 className="text-4xl uppercase text-center -mt-16 text-white">
+            <LazyLoadImage src={slide1} alt="" />
+            <h3 className="text-4xl uppercase font-bold text-center -mt-16 text-white">
               Programming
             </h3>
           </Link>
         </SwiperSlide>
         <SwiperSlide>
           <Link to=" course/photography">
-            <img src={slide2} alt="" />
+            <LazyLoadImage src={slide2} alt="" />
             <h3 className="text-4xl uppercase text-center -mt-16 text-white">
               Photography
             </h3>
@@ -47,7 +51,7 @@ const Category = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Link to=" course/design">
-            <img src={slide3} alt="" />
+            <LazyLoadImage src={slide3} alt="" />
             <h3 className="text-4xl uppercase text-center -mt-16 text-white">
               Design
             </h3>
@@ -55,15 +59,15 @@ const Category = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Link to=" course/foreign-language">
-            <img src={slide4} alt="" />
+            <LazyLoadImage src={slide4} alt="" />
             <h3 className="text-4xl uppercase text-center -mt-16  text-white">
-              Foreign Language
+              Arts
             </h3>
           </Link>
         </SwiperSlide>
         <SwiperSlide>
           <Link to=" course/art-craft">
-            <img src={slide5} alt="" />
+            <LazyLoadImage src={slide5} alt="" />
             <h3 className="text-4xl uppercase text-center -mt-16 text-white">
               Art & Craft
             </h3>
@@ -71,7 +75,7 @@ const Category = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Link to=" course/martial-art">
-            <img src={slide6} alt="" />
+            <LazyLoadImage src={slide6} alt="" />
             <h3 className="text-4xl uppercase text-center -mt-16 text-white">
               Martial Art
             </h3>
