@@ -1,13 +1,12 @@
-
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/opacity.css';
-import img1 from '../../assets/home/01.jpg';
-import img2 from '../../assets/home/02.png';
-import img3 from '../../assets/home/03.jpg';
-import img4 from '../../assets/home/06.jpg';
-import img5 from '../../assets/home/07.jpg';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/opacity.css";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import img1 from "../../assets/home/01.jpg";
+import img2 from "../../assets/home/02.png";
+import img3 from "../../assets/home/03.jpg";
+import img4 from "../../assets/home/06.jpg";
+import img5 from "../../assets/home/07.jpg";
 import ImagePreLoader from "./../../Helpers/ImagePreLoader";
 
 const Banner = () => {
@@ -16,7 +15,12 @@ const Banner = () => {
   return (
     <>
       <ImagePreLoader imageUrls={imageUrls} />
-      <Carousel showThumbs={true} showStatus={false} autoPlay={true} interval={1500}>
+      <Carousel
+        showThumbs={true}
+        showStatus={false}
+        autoPlay={true}
+        interval={1500}
+      >
         <div>
           <LazyLoadImage src={img1} className="carousel-image" alt="Image 1" />
         </div>

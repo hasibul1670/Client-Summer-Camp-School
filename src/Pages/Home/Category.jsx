@@ -21,7 +21,7 @@ const Category = () => {
     <section>
       <SectionTitle
         subHeading={"Enroll -&- Learn- "}
-        heading={"Enroll Courses "}
+        heading={"Enroll in Courses "}
       ></SectionTitle>
       <ImagePreLoader imageUrls={imageUrls} />
       <Swiper
@@ -30,13 +30,13 @@ const Category = () => {
         loop={true}
         centeredSlides={true}
         modules={[Pagination]}
-        autoplay={{ delay: 1000 }}
+        autoplay={{ delay: 1000 }} // Adjust the delay as desired (in milliseconds)
         className="mySwiper mb-24"
       >
         <SwiperSlide>
           <Link to=" course/programming">
             <LazyLoadImage src={slide1} alt="" />
-            <h3 className="text-4xl uppercase font-bold text-center -mt-16 text-white">
+            <h3 className="text-4xl uppercase text-center -mt-16 text-white">
               Programming
             </h3>
           </Link>
@@ -61,7 +61,7 @@ const Category = () => {
           <Link to=" course/foreign-language">
             <LazyLoadImage src={slide4} alt="" />
             <h3 className="text-4xl uppercase text-center -mt-16  text-white">
-              Arts
+              Foreign Language
             </h3>
           </Link>
         </SwiperSlide>
