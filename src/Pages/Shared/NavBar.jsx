@@ -73,11 +73,11 @@ const NavBar = () => {
         <DarkModeSwitch
           checked={isDarkMode}
           onChange={toggleDarkMode}
-          className="w-5 h-10 
-          md:w-10
-          md:h-10
-          lg:w-10
-        lg:h-10"
+          className="w-5 h-7
+          md:w-7
+          md:h-7
+          lg:w-7
+        lg:h-7"
         />
 
         <div className="navbar-end">
