@@ -2,20 +2,19 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/opacity.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import LocalStorageImg from "../../Helpers/LocalStorageImg";
 import img1 from "../../assets/home/01.jpg";
 import img2 from "../../assets/home/02.png";
 import img3 from "../../assets/home/03.jpg";
 import img4 from "../../assets/home/06.jpg";
 import img5 from "../../assets/home/07.jpg";
 import ImagePreLoader from "./../../Helpers/ImagePreLoader";
-import LocalStorageImg from "../../Helpers/LocalStorageImg";
 
 const Banner = () => {
   const imageUrls = [img1, img2, img3, img4, img5];
 
   return (
     <>
-
       <ImagePreLoader imageUrls={imageUrls} />
       <LocalStorageImg imageUrls={imageUrls} />
       <Carousel
