@@ -4,10 +4,11 @@ import image from "../../assets/home/404.png";
 const CourseCard = ({ course }) => {
   const { id, title, startMonth, endMonth, year } = course;
   return (
-    <div
-      className="card w-64 border-solid border-2 border-sky-500 shadow-xl"
-      key={id}
-    >
+    // <div
+    //   className="card w-64 border-solid border-2 border-sky-500 shadow-xl"
+    //   key={id}
+    // >
+      <div className="card w-64 border-solid border-2 border-sky-500 shadow-xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-300">
       <figure className="px-10 pt-10">
         <img src={image} alt="Course" className="rounded-xl" />
       </figure>
@@ -20,7 +21,7 @@ const CourseCard = ({ course }) => {
 
         <p>$45.95</p>
         <div className="card-actions">
-          <button className="btn btn-primary">Buy Now</button>
+          <button className="btn btn-primary">Enroll Now</button>
         </div>
       </div>
     </div>

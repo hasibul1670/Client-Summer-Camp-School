@@ -3,6 +3,7 @@ import Main from "../Layouts/Main";
 import AboutUs from "../Pages/Shared/AboutUs";
 import NotFound from "../Pages/Shared/NotFound";
 import Home from "./../Pages/Home/Home";
+import Login from "../Pages/Login/Login";
 
 export const router = createBrowserRouter([
   {
@@ -14,7 +15,11 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/about-us",
+        path: 'login',
+        element: <Login></Login>
+      },
+      {
+        path: "about-us",
         element: <AboutUs />,
       },
     ],

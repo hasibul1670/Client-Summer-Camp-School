@@ -88,7 +88,10 @@ const NavBar = () => {
             </button>
           </Link>
 
-          <button className="btn btn-outline btn-primary">Sign In</button>
+          <Link to="/login">
+            {" "}
+            <button className="btn btn-outline btn-primary">Sign In</button>
+          </Link>
         </div>
       </div>
     </>

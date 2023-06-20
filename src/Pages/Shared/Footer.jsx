@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div>
-      <footer className="footer footer-center p-10 bg-base-300 text-base-content rounded">
-        <div className="grid grid-flow-col gap-4">
-          <Link to="/about-us" className="link link-hover">
+      <footer className="footer footer-center p-10 bg-gray-600 text-base-content rounded">
+        <div className="grid grid-flow-col gap-4 text-white">
+          <Link to="/about-us" className="link link-hover ">
             About us
           </Link>
           <Link to="/contact" className="link link-hover">
@@ -19,7 +19,7 @@ const Footer = () => {
           </Link>
         </div>
         <div>
-          <div className="grid grid-flow-col gap-4">
+          <div className="grid grid-flow-col gap-4 text-white">
             <a href="https://www.facebook.com/hasibulcse" target="blank">
               <svg
                 xmlns="https://twitter.com/?lang=en"
@@ -56,7 +56,7 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <p>Copyright © 2023 - All right reserved by Hasibul Islam</p>
+          <p className="text-white font-bold">Copyright © 2023 - All right reserved by Hasibul Islam</p>
         </div>
       </footer>
     </div>
