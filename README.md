@@ -23,6 +23,6 @@ Welcome to the Summer Camp School project! This is an e-learning website that pr
 
 If you have any questions, feel free to reach out to us:
 
-- Email: summercampschool@example.com
-- Website: https://client-summer-camp-school.vercel.app/
+- Email: hasibulislam1670@gmail.com
+- Website: https://client-summer-school.vercel.app/
 - GitHub: https://github.com/hasibul1670
