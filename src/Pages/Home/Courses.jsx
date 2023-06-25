@@ -19,7 +19,7 @@ const Courses = () => {
   }
 
   if (!courseArray) {
-    // Handle cases where courseArray is undefined or null
+   
     return <div>No courses available.</div>;
   }
 
@@ -30,6 +30,7 @@ const Courses = () => {
         data-aos-duration="7000"
         heading={"Our Courses "}
       ></SectionTitle>
+
       <div
         data-aos="fade-right"
         data-aos-duration="1000"
