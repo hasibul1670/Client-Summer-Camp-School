@@ -1,24 +1,35 @@
-import React, { useEffect } from "react";
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 const NavBar = () => {
-  const [isDarkMode, setDarkMode] = React.useState(false);
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "cupcake"
+  );
+  const [isDarkMode, setDarkMode] = useState(false);
+
+  const handleToggle = (e) => {
+    if (e.target.checked) {
+      setTheme("dark");
+    } else {
+      setTheme("cupcake");
+    }
+  };
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
 
   const toggleDarkMode = (checked) => {
     setDarkMode(checked);
   };
   useEffect(() => {
-    const navbar = document.querySelector(".navbar");
-
     if (isDarkMode) {
-      navbar.style.backgroundColor = "black";
-      document.body.style.backgroundColor = "black";
-      document.body.style.color = "white";
+      setTheme("dark");
     } else {
-      navbar.style.backgroundColor = "white";
-      document.body.style.backgroundColor = "white";
-      document.body.style.color = "black";
+      setTheme("cupcake");
     }
   }, [isDarkMode]);
 

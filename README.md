@@ -27,7 +27,6 @@ Welcome to the Summer Camp School project! This is an e-learning website that pr
 - [aos](https://www.npmjs.com/package/aos): ^2.3.4
 - [axios](https://www.npmjs.com/package/axios): ^1.4.0
 - [daisyui](https://www.npmjs.com/package/daisyui): ^3.1.1
-- [framer-motion](https://www.npmjs.com/package/framer-motion): ^10.12.16
 - [localforage](https://www.npmjs.com/package/localforage): ^1.10.0
 - [lottie-react](https://www.npmjs.com/package/lottie-react): ^2.4.0
 - [react](https://reactjs.org/): ^18.2.0

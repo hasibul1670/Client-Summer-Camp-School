@@ -32,8 +32,8 @@ const Courses = () => {
       ></SectionTitle>
 
       <div
-        data-aos="fade-right"
-        data-aos-duration="1000"
+        data-aos="fade-up"
+        data-aos-duration="2000"
         className="flex justify-center  container mx-auto mb-5    px-4"
       >
         <div className="grid  mt-4 md:grid-cols-2 lg:grid-cols-3  gap-5">
