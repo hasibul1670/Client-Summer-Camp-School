@@ -1,21 +1,16 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
+import { AuthContext } from "../../Providers/AuthProvider";
 const NavBar = () => {
+  const { user, logOut, loading } = useContext(AuthContext);
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "cupcake"
   );
   const [isDarkMode, setDarkMode] = useState(false);
 
-  const handleToggle = (e) => {
-    if (e.target.checked) {
-      setTheme("dark");
-    } else {
-      setTheme("cupcake");
-    }
-  };
   useEffect(() => {
     localStorage.setItem("theme", theme);
     const localTheme = localStorage.getItem("theme");
@@ -44,14 +39,22 @@ const NavBar = () => {
       <li>
         <Link to="/order/salad">Events</Link>
       </li>
+
+      <li>{user?.email && <Link to="/dashboard">Dashboard</Link>}</li>
     </>
   );
 
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
   return (
     <>
-      <div className="navbar fixed  z-10 bg-opacity-30 max-w-screen-xl font-bold ">
+      <div className="navbar fixed z-10 bg-opacity-50 max-w-screen-2xl text-white bg-black  ">
         <div className="navbar-start">
-          <div className=" dropdown">
+          <div className="dropdown ">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -68,16 +71,18 @@ const NavBar = () => {
                 />
               </svg>
             </label>
-
             <ul
               tabIndex={0}
-              className="menu menu-compact bg-gray-400  dropdown-content mt-3 p-2 shadow rounded-box w-52"
+              className="menu menu-compact dropdown-content mt-3 p-2 text-primary font-bold shadow  bg-base-100 rounded-box w-52"
             >
               {navOptions}
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">School</a>
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
+            Sunlight{" "}
+          </Link>
         </div>
+
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
@@ -99,10 +104,20 @@ const NavBar = () => {
             </button>
           </Link>
 
-          <Link to="/login">
-            {" "}
-            <button className="btn btn-outline btn-primary">Sign In</button>
-          </Link>
+          {user?.email ? (
+            <>
+              <button onClick={handleLogOut} className="btn btn-ghost">
+                LogOut
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">
+                {" "}
+                <button className="btn  btn-primary">Sign In</button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </>
