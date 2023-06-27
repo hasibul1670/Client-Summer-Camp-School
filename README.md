@@ -43,9 +43,9 @@ Welcome to the Summer Camp School project! This is an e-learning website that pr
 - [swiper](https://www.npmjs.com/package/swiper): ^9.4.1
 If you have any questions, feel free to reach out to us:
 
-  #### Email: hasibulislam1670@gmail.com
-  #### Website: https://summer-school-camp.netlify.app/
-####GitHub: https://github.com/hasibul1670
+  ### Email: hasibulislam1670@gmail.com
+  ### Website: https://summer-school-camp.netlify.app/
+  ### GitHub: https://github.com/hasibul1670
 
 
 dev branch included
