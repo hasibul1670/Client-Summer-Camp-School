@@ -1,17 +1,17 @@
 import { useState } from "react";
 
-import SideBar from "./SideBar";
-import SelectedCourses from "./selectedCourses";
-import EntrolledCourses from "./EntrolledCourses";
-import Grades from "./Grades";
-import Resources from "./Resources";
 import { Calendar } from "antd";
-import DiscussionForum from "./DiscussionForum";
-import HelpSupport from "./HelpSupport";
-import Profile from "./Profile";
 import AllUsers from "./AllUsers";
 import Assignments from "./Assignments";
+import DiscussionForum from "./DiscussionForum";
 import Enrollments from "./Enrollments";
+import EntrolledCourses from "./EntrolledCourses";
+import Grades from "./Grades";
+import HelpSupport from "./HelpSupport";
+import Profile from "./Profile";
+import Resources from "./Resources";
+import SelectedCourses from "./SelectedCourses";
+import SideBar from "./SideBar";
 
 const DashboardHome = () => {
   const [activeMenu, setActiveMenu] = useState("dashboard");
@@ -25,55 +25,43 @@ const DashboardHome = () => {
 
   if (activeMenu === "enrolled") {
     mainContent = <EntrolledCourses />;
-    headerContent= "My Courses"
-
+    headerContent = "My Courses";
   } else if (activeMenu === "selectedCourses") {
-    mainContent = < SelectedCourses/>;
-    headerContent= "Selected Courses"
-  }
-   else if (activeMenu === "Grades") {
-    mainContent = <Grades/>;
-    headerContent= "Grades"
-  }
-   else if (activeMenu === "Resources") {
-    mainContent = <Resources/>;
-    headerContent= "Resources"
-  }
-   else if (activeMenu === "Calendar") {
-    mainContent = <Calendar/>;
-    headerContent= "Calendar"
-  }
-   else if (activeMenu === "DiscussionForum") {
-    mainContent = <DiscussionForum/>;
-    headerContent= "Discussion Forum "
-  }
-   else if (activeMenu === "Profile") {
-    mainContent = <Profile/>;
-    headerContent= "Your Profile"
-  }
-   else if (activeMenu === "HelpSupport") {
-    mainContent = <HelpSupport/>;
-    headerContent= "Help/Support Center"
-  }
-
-   else if (activeMenu === "Assignments") {
-    mainContent = <Assignments/>;
-    headerContent= "Assignments"
-  }
-   else if (activeMenu === "AllUsers") {
-    mainContent = <AllUsers/>;
-    headerContent=  "All Users Students/Instructors"
-  }
-   else if (activeMenu === "Enrollments") {
+    mainContent = <SelectedCourses />;
+    headerContent = "Selected Courses";
+  } else if (activeMenu === "Grades") {
+    mainContent = <Grades />;
+    headerContent = "Grades";
+  } else if (activeMenu === "Resources") {
+    mainContent = <Resources />;
+    headerContent = "Resources";
+  } else if (activeMenu === "Calendar") {
+    mainContent = <Calendar />;
+    headerContent = "Calendar";
+  } else if (activeMenu === "DiscussionForum") {
+    mainContent = <DiscussionForum />;
+    headerContent = "Discussion Forum ";
+  } else if (activeMenu === "Profile") {
+    mainContent = <Profile />;
+    headerContent = "Your Profile";
+  } else if (activeMenu === "HelpSupport") {
+    mainContent = <HelpSupport />;
+    headerContent = "Help/Support Center";
+  } else if (activeMenu === "Assignments") {
+    mainContent = <Assignments />;
+    headerContent = "Assignments";
+  } else if (activeMenu === "AllUsers") {
+    mainContent = <AllUsers />;
+    headerContent = "All Users Students/Instructors";
+  } else if (activeMenu === "Enrollments") {
     mainContent = <Enrollments />;
-    headerContent= "Enrollments"
+    headerContent = "Enrollments";
   }
-   
 
   return (
     <div className="flex flex-col lg:flex-row ">
       <div className="min-h-screen w-full lg:w-1/6">
-      <SideBar activeMenu={activeMenu} onMenuClick={handleMenuClick} />
+        <SideBar activeMenu={activeMenu} onMenuClick={handleMenuClick} />
       </div>
 
       <div className="bg-gray-200 flex-grow">

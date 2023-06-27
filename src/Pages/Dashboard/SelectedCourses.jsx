@@ -1,8 +1,9 @@
+import React from 'react';
 
 const SelectedCourses = () => {
     return (
         <div>
-            <h2>selectedCourses</h2>
+            <h1>SelectedCourses SelectedCourses 2023</h1>
         </div>
     );
 };
