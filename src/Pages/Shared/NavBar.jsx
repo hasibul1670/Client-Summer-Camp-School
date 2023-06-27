@@ -34,10 +34,10 @@ const NavBar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/menu">Our Course</Link>
+        <Link to="/courses">Our Course</Link>
       </li>
       <li>
-        <Link to="/order/salad">Events</Link>
+        <Link to="/events">Events</Link>
       </li>
 
       <li>{user?.email && <Link to="/dashboard">Dashboard</Link>}</li>
@@ -52,7 +52,7 @@ const NavBar = () => {
 
   return (
     <>
-      <div className="navbar fixed z-10 bg-opacity-50 max-w-screen-2xl text-white bg-black  ">
+      <div className="navbar z-10 bg-opacity-50 max-w-screen-2xl text-white bg-black  ">
         <div className="navbar-start">
           <div className="dropdown ">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">

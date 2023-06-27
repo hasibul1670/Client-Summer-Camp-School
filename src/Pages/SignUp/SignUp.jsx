@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const [gender, setGender] = useState("");
@@ -64,6 +65,9 @@ const SignUp = () => {
 
   return (
     <div className="main-container p-10 py-20 banner-login  md:hero min-h-screen   justify-items-center">
+         <Helmet>
+        <title> Sunlight Academy | SignUp❤️</title>
+      </Helmet>
       <div className="hero min-h-screen bg-base-200 ">
         <div className="hero-content flex-col lg:flex-row-reverse  ">
           <div className="text-center lg:text-left ">

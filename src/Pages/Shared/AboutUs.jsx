@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
+import { Helmet } from "react-helmet-async";
 
 const AboutUs = () => {
   return (
     <div className="mx-auto px-4 pt-20 ">
+        <Helmet>
+        <title> Sunlight Academy | About ❤️</title>
+      </Helmet>
       <div className="hero min-h-screen ">
         <div className=" p-5">
           <SectionTitle heading={"About Us "}></SectionTitle>
