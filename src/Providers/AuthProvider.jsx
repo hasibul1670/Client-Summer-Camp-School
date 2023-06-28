@@ -72,7 +72,6 @@ const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  console.log('Hello',user);
   const authInfo = {
     user,
     setUser,

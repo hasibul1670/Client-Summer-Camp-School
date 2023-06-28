@@ -8,7 +8,7 @@ const Footer = () => {
           <Link to="/about-us" className="link link-hover ">
             About us
           </Link>
-          <Link to="/contact" className="link link-hover">
+          <Link to="/contactUs" className="link link-hover">
             Contact
           </Link>
           <Link to="/blogs" className="link link-hover">
@@ -16,6 +16,9 @@ const Footer = () => {
           </Link>
           <Link to="/news" className="link link-hover">
             News
+          </Link>
+          <Link to="/events" className="link link-hover">
+            events
           </Link>
         </div>
         <div>

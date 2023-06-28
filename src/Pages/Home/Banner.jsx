@@ -56,11 +56,7 @@ const Banner = () => {
               <h6 className="font-bold md:text-sm text-xs text-gray-300">
                 Experience the ultimate summer school camp adventure at Sunlight
                 Academy! Join us for an enriching and exciting summer filled
-                with learning, exploration, and unforgettable memories. At
-                Sunlight Academy's Summer School Camp, we believe in making
-                education engaging and enjoyable. Our camp offers a wide range
-                of academic subjects and hands-on activities designed to ignite
-                curiosity, foster creativity, and promote a love for learning.
+                with learning, exploration,
               </h6>
             </div>
           </div>
@@ -106,9 +102,7 @@ const Banner = () => {
               <h6 className="font-bold md:text-sm text-xs text-gray-300">
                 Experience the ultimate summer school camp adventure at Sunlight
                 Academy! Join us for an enriching and exciting summer filled
-                with learning, exploration, and unforgettable memories. At
-                Sunlight Academy's Summer School Camp, we believe in making
-                education engaging and enjoyable.
+                with learning, exploration.
               </h6>
             </div>
           </div>

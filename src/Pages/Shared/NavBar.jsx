@@ -34,10 +34,10 @@ const NavBar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/courses">Our Course</Link>
+        <Link to="/courses">Our Courses</Link>
       </li>
       <li>
-        <Link to="/events">Events</Link>
+        <Link to="/events">Our Instructors</Link>
       </li>
 
       <li>{user?.email && <Link to="/dashboard">Dashboard</Link>}</li>
@@ -73,7 +73,7 @@ const NavBar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 text-primary font-bold shadow  bg-base-100 rounded-box w-52"
+              className="menu menu-compact  dropdown-content mt-3 p-2 text-primary font-bold shadow  bg-base-100 rounded-box w-52"
             >
               {navOptions}
             </ul>
@@ -84,7 +84,7 @@ const NavBar = () => {
         </div>
 
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navOptions}</ul>
+          <ul className="menu font-bold menu-horizontal px-1">{navOptions}</ul>
         </div>
         <DarkModeSwitch
           checked={isDarkMode}

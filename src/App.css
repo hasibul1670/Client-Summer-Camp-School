@@ -1,8 +1,9 @@
 .carousel-image {
-    max-width: 750px; /* Adjust the width as desired */
-    height: auto;
-  }
+  max-width: 750px; /* Adjust the width as desired */
+  height: auto;
+}
 
-
-
-  
+#contactNo {
+  background-color: aqua!important;
+  color: green;
+}

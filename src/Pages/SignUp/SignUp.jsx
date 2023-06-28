@@ -1,12 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import { useMutation } from "@tanstack/react-query";
+import Lottie from "lottie-react";
 import { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
+import { Controller, useForm } from "react-hook-form";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { Helmet } from "react-helmet-async";
+import signup from "../../assets/animation/118046-lf20-oahmox5rjson.json";
 
 const SignUp = () => {
   const [gender, setGender] = useState("");
@@ -17,6 +21,7 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+    control,
     reset,
     formState: { errors },
   } = useForm();
@@ -45,6 +50,7 @@ const SignUp = () => {
   });
 
   const onSubmit = (data) => {
+    console.log(data);
     const email = data.email;
     const password = data.password;
     const firstName = data.firstName;
@@ -64,21 +70,20 @@ const SignUp = () => {
   };
 
   return (
-    <div className="main-container p-10 py-20 banner-login  md:hero min-h-screen   justify-items-center">
-         <Helmet>
+    <div className="main-container p-10 py-20 md:hero min-h-screen   justify-items-center">
+      <Helmet>
         <title> Sunlight Academy | SignUp❤️</title>
       </Helmet>
       <div className="hero min-h-screen bg-base-200 ">
         <div className="hero-content flex-col lg:flex-row-reverse  ">
-          <div className="text-center lg:text-left ">
+          <div className="text-center ">
             <h1 className="text-5xl font-bold">
-              Register <span className="text-blue-500">now!</span>{" "}
+              SignUp <span className="text-blue-500">Now!</span>{" "}
             </h1>
-            <p className="py-6 text-sm font-bold">
-              Join us for an enriching and exciting summer filled with learning,
-              exploration, and unforgettable memories. At Sunlight Academy's
-              Summer School Camp,
-            </p>
+
+            <div className="w-1/8 mb-10 md:mb-0 mx-auto">
+              <Lottie animationData={signup} loop={true} />
+            </div>
           </div>
 
           <form
@@ -101,9 +106,9 @@ const SignUp = () => {
                     aria-invalid={errors.firstName ? "true" : "false"}
                   />
                   {errors.firstName?.type === "required" && (
-                    <span className="text-red-600">
+                    <small className="text-red-600">
                       First name is required!
-                    </span>
+                    </small>
                   )}
                 </div>
                 {/* Last Name */}
@@ -118,33 +123,42 @@ const SignUp = () => {
                     type="text"
                     placeholder="Last Name"
                     className="input input-bordered"
-                  
                   />
-                    {errors.lastName?.type === "required" && (
-                    <span className="text-red-600">
+                  {errors.lastName?.type === "required" && (
+                    <small className="text-red-600">
                       Last name is required!
-                    </span>
+                    </small>
                   )}
                 </div>
 
-                {/* Email */}
+                {/* email */}
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Email</span>
+                    <span className="label-text">Your Email:</span>
                   </label>
 
                   <input
-                    {...register("email", { required: true })}
+                    {...register("email", {
+                      required: "Email is required",
+                      validate: {
+                        maxLength: (v) =>
+                          v.length <= 50 ||
+                          "The email should have at most 50 characters",
+                        matchPattern: (v) =>
+                          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+                            v
+                          ) || "Email address must be a valid address",
+                      },
+                    })}
                     name="email"
-                    type="email"
                     placeholder="Email"
                     className="input input-bordered"
-                   
                   />
-                    {errors.email?.type === "required" && (
-                    <span className="text-red-600">
-                      Email name is required!
-                    </span>
+
+                  {errors.email?.message && (
+                    <small className="text-red-600">
+                      {errors.email.message}
+                    </small>
                   )}
                 </div>
 
@@ -154,17 +168,26 @@ const SignUp = () => {
                     <span className="label-text">Password : </span>
                   </label>
                   <input
-                    {...register("password", { required: true })}
+                    {...register("password", {
+                      required: "Password is required",
+                      validate: {
+                        maxLength: (v) =>
+                          v.length <= 15 ||
+                          "The Password have at most 15 characters",
+                        minLength: (v) =>
+                          v.length >= 6 ||
+                          "The Password have at least 6 characters",
+                      },
+                    })}
                     name="password"
                     type="password"
                     placeholder="Password"
                     className="input input-bordered"
-                 
                   />
-                    {errors.password?.type === "required" && (
-                    <span className="text-red-600">
-                      Password is required!
-                    </span>
+                  {errors.password?.message && (
+                    <small className="text-red-600">
+                      {errors.password.message}
+                    </small>
                   )}
                 </div>
 
@@ -181,7 +204,6 @@ const SignUp = () => {
                       checked={gender === "male"}
                       onChange={handleGenderChange}
                     />
-                 
                   </label>
 
                   <label className="label cursor-pointer">
@@ -195,10 +217,11 @@ const SignUp = () => {
                       checked={gender === "female"}
                       onChange={handleGenderChange}
                     />
-                  
                   </label>
 
-                
+                  {!gender && (
+                    <small className=" text-red-600">Select One !!</small>
+                  )}
                 </div>
                 {/* DOB */}
                 <div>
@@ -212,10 +235,10 @@ const SignUp = () => {
                     name="dob"
                     placeholder="Date of Birth"
                   />
-                      {errors.dob?.type === "required" && (
-                    <span className="text-red-600">
+                  {errors.dob?.type === "required" && (
+                    <small className="text-red-600">
                       Select your Date of Birth
-                    </span>
+                    </small>
                   )}
                 </div>
 
@@ -230,31 +253,50 @@ const SignUp = () => {
                     type="text"
                     placeholder="Address"
                     className="input input-bordered"
-                   
                   />
                   {errors.address?.type === "required" && (
-                    <span className="text-red-600">
-                      Address is Required
-                    </span>
+                    <small className="text-red-600">Address is Required</small>
                   )}
                 </div>
 
                 {/* contactNo */}
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Contact : </span>
+                    <span className="label-text">Contact Number : </span>
                   </label>
-                  <input
+
+                  {/* <input
                     {...register("contactNo", { required: true })}
                     name="contactNo"
                     type="text"
                     placeholder="Contact Number"
                     className="input input-bordered"
+
+                    
+                  /> */}
+
+                  <Controller
+                    name="contactNo"
+                    control={control}
+                    rules={{
+                      validate: (value) => isValidPhoneNumber(value),
+                    }}
+                    render={({ field: { onChange, value } }) => (
+                      <PhoneInput
+                        value={value}
+                        {...register("contactNo", { required: true })}
+                        onChange={onChange}
+                        className="input input-bordered"
+                        defaultCountry="BD"
+                        id="contactNo"
+                      />
+                    )}
                   />
-                  {errors.contactNo?.type === "required" && (
-                    <span className="text-red-600">
-                      Contact Number is Required
-                    </span>
+
+                  {errors["contactNo"] && (
+                    <small className=" text-red-600">
+                      Invalid Phone Number
+                    </small>
                   )}
                 </div>
 
