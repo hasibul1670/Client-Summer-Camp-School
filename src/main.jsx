@@ -7,6 +7,7 @@ import { RouterProvider } from "react-router-dom";
 import AuthProvider from "./Providers/AuthProvider";
 import { router } from "./Routes/Routes";
 import "./index.css";
+import "./App.css";
 
 const queryClient = new QueryClient();
 
