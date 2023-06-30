@@ -1,8 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import Banner from "./Banner";
-import Category from "./Category";
-import Courses from "./Courses";
+import Category from "./SliderCategory";
+
 import FAQ from "./FAQ";
+import HomeCoursesCategory from "./HomeDisplayCourses";
 
 
 const Home = () => {
@@ -16,7 +17,8 @@ const Home = () => {
 
       <Category />
 
-      <Courses />
+<HomeCoursesCategory/>
+    
 
       <FAQ />
     </div>

@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../Layouts/Dashboard";
 import Main from "../Layouts/Main";
+import AcademicEnrichment from "../Pages/Courses/AcademicEnrichment";
 import Art from "../Pages/Courses/Art";
-import Course from "../Pages/Courses/Course";
+import CategoryCard from "../Pages/Courses/CategoryCard";
 import LifeSkill from "../Pages/Courses/LifeSkill";
+import Specialized from "../Pages/Courses/Specialized";
 import SportFitness from "../Pages/Courses/SportFitness";
 import DashboardHome from "../Pages/Dashboard/DashboardHome";
 import AboutUs from "../Pages/FooterComponents/AboutUs";
@@ -11,6 +13,7 @@ import Blogs from "../Pages/FooterComponents/Blogs";
 import ContactUs from "../Pages/FooterComponents/ContactUs";
 import Event from "../Pages/FooterComponents/Event";
 import News from "../Pages/FooterComponents/News";
+import InstructorList from "../Pages/Instructor/InstructorList";
 import Login from "../Pages/Login/Login";
 import NotFound from "../Pages/Shared/NotFound";
 import SignUp from "../Pages/SignUp/SignUp";
@@ -35,7 +38,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "courses",
-        element: <Course></Course>,
+        element: <CategoryCard></CategoryCard>,
       },
       {
         path: "/courses/lifeskills",
@@ -48,6 +51,18 @@ export const router = createBrowserRouter([
       {
         path: "/courses/art",
         element: <Art />,
+      },
+      {
+        path: "/courses/academic-enrichment",
+        element: <AcademicEnrichment />,
+      },
+      {
+        path: "/courses/specialized-interest",
+        element: <Specialized />,
+      },
+      {
+        path: "/instructors",
+        element: <InstructorList />,
       },
 
       {

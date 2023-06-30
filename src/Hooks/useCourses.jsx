@@ -15,6 +15,8 @@ const useCourses = () => {
     },
   });
 
+  console.log('Hello from useCourse ``````````` ',course);
+
   return [course, loading, refetch];
 };
 
