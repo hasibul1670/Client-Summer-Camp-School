@@ -265,15 +265,7 @@ const SignUp = () => {
                     <span className="label-text">Contact Number : </span>
                   </label>
 
-                  {/* <input
-                    {...register("contactNo", { required: true })}
-                    name="contactNo"
-                    type="text"
-                    placeholder="Contact Number"
-                    className="input input-bordered"
-
-                    
-                  /> */}
+              
 
                   <Controller
                     name="contactNo"

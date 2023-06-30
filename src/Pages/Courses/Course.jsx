@@ -3,7 +3,7 @@ import CategoryCard from "./CategoryCard";
 
 const Course = () => {
   return (
-    <div className="bg-teal-50">
+    <div className="bg-gray-400">
       <Helmet>
         <title> Sunlight Academy | Category </title>
       </Helmet>

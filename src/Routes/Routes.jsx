@@ -1,7 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../Layouts/Dashboard";
 import Main from "../Layouts/Main";
+import Art from "../Pages/Courses/Art";
 import Course from "../Pages/Courses/Course";
+import LifeSkill from "../Pages/Courses/LifeSkill";
+import SportFitness from "../Pages/Courses/SportFitness";
 import DashboardHome from "../Pages/Dashboard/DashboardHome";
 import AboutUs from "../Pages/FooterComponents/AboutUs";
 import Blogs from "../Pages/FooterComponents/Blogs";
@@ -34,6 +37,19 @@ export const router = createBrowserRouter([
         path: "courses",
         element: <Course></Course>,
       },
+      {
+        path: "/courses/lifeskills",
+        element: <LifeSkill></LifeSkill>,
+      },
+      {
+        path: "/courses/sports",
+        element: <SportFitness></SportFitness>,
+      },
+      {
+        path: "/courses/art",
+        element: <Art />,
+      },
+
       {
         path: "events",
         element: <Event></Event>,
