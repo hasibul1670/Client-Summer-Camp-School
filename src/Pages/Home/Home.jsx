@@ -5,22 +5,20 @@ import Category from "./SliderCategory";
 import FAQ from "./FAQ";
 import HomeCoursesCategory from "./HomeDisplayCourses";
 
-
 const Home = () => {
   return (
     <div>
       <Helmet>
         <title> Sunlight Academy | Home</title>
       </Helmet>
-    
+
       <Banner />
 
       <Category />
 
-<HomeCoursesCategory/>
-    
-
       <FAQ />
+
+      <HomeCoursesCategory />
     </div>
   );
 };
