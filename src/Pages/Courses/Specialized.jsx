@@ -22,10 +22,10 @@ const Specialized = () => {
     return <div>No courses available.</div>;
   }
 
-  console.log('Hello',courseArray);
+
   const filteredCourses = courseArray.filter((course) => course.category === 'specialized');
 
-  console.log('Hello', filteredCourses);
+
     return (
     <div>
       <SectionTitle

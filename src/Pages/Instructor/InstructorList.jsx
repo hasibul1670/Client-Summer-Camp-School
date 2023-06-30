@@ -17,8 +17,6 @@ const SportFitness = () => {
 
   const instructorsArray = instructors?.data;
 
-  console.log('Hello instructor ``````````````````````````````` ',instructorsArray);
-
 
   if (loading) {
     // Handle loading state

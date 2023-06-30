@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
     if (response.status === 404) {
       throw new Error("Internal Server Error !! please try again later");
     }
-    console.log("Hello", response);
+
   
     return response.json();
   };

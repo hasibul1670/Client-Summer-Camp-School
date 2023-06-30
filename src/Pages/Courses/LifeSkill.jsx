@@ -26,8 +26,6 @@ const LifeSkill = () => {
   const filteredCourses = courseArray.filter((course) => course.category === 'lifeSkill');
 
 
-  console.log(' hello filter data from skill ',filteredCourses);
-  
 
   return (
     <div>

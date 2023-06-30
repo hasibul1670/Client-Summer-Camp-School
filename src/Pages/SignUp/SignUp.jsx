@@ -50,7 +50,7 @@ const SignUp = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+ 
     const email = data.email;
     const password = data.password;
     const firstName = data.firstName;
