@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import { RouterProvider } from "react-router-dom";
-
+import "aos/dist/aos.css";
 import AuthProvider from "./Providers/AuthProvider";
 import { router } from "./Routes/Routes";
 import "./index.css";

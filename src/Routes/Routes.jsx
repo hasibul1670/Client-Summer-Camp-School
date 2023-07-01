@@ -18,6 +18,7 @@ import Login from "../Pages/Login/Login";
 import NotFound from "../Pages/Shared/NotFound";
 import SignUp from "../Pages/SignUp/SignUp";
 import Home from "./../Pages/Home/Home";
+import InstructorDetails from "../Pages/Instructor/InstructorDetails";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "/instructors",
         element: <InstructorList />,
+      },
+      {
+        path: "/instructors/:id",
+        element: <InstructorDetails/>,
       },
 
       {

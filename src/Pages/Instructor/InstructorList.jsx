@@ -2,30 +2,33 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import useInstructor from "../../Hooks/useInstructor";
-import CourseCard from "../Shared/CourseCard";
 import InstructorCard from "../Shared/InstructorCard";
-import { Helmet } from "react-helmet-async";
+import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const SportFitness = () => {
   useEffect(() => {
     AOS.init();
   }, []);
 
-  const [instructors, loading, refetch] = useInstructor();
+  const [instructors, loading] = useInstructor();
+
+  console.log('Hello ***************',instructors);
 
   const instructorsArray = instructors?.data;
 
-
   if (loading) {
-    // Handle loading state
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
+  }
+
+  if (!instructorsArray) {
+    return <div>No instructors available.</div>;
   }
 
 
-
-  if (!instructorsArray) {
+  if (!Array.isArray(instructorsArray)) {
     return <div>No instructors available.</div>;
   }
 
@@ -34,21 +37,20 @@ const SportFitness = () => {
       <SectionTitle
         data-aos="fade-right"
         data-aos-duration="7000"
-        heading={"Our instructors"}
+        heading={"Meet Our instructors"}
       ></SectionTitle>
       <div
         data-aos="fade-up"
         data-aos-duration="2000"
         className="flex justify-center  container mx-auto mb-5    px-4"
       >
+        <Helmet>
+          <title> Sunlight Academy | Instructors🤵‍♀️ </title>
+        </Helmet>
 
-<Helmet>
-        <title> Sunlight Academy | Instructors🤵‍♀️ </title>
-      </Helmet>
-      
         <div className="grid  mt-4 md:grid-cols-2 lg:grid-cols-3  gap-5">
-          {instructorsArray.map((course) => (
-            <InstructorCard key={course._id} course={course}/>
+          {instructorsArray?.map((instructor) => (
+            <InstructorCard key={instructor.id} instructor={instructor} />
           ))}
         </div>
       </div>

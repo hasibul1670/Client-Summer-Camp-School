@@ -5,12 +5,13 @@ import "swiper/css/pagination";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import useCourses from "../../Hooks/useCourses";
 import img404 from "../../assets/home/404.png";
+import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const Category = () => {
   const [courses, loading] = useCourses();
   const courseArray = courses?.data?.data;
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner/>
   }
 
   if (!courseArray) {

@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import useCourses from "../../Hooks/useCourses";
 import CourseCard from "../Shared/CourseCard";
+import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const AcademicEnrichment = () => {
   useEffect(() => {
@@ -15,7 +16,7 @@ const AcademicEnrichment = () => {
   const courseArray = courses?.data?.data;
   if (loading) {
     // Handle loading state
-    return <div>Loading...</div>;
+    return <LoadingSpinner/>;
   }
 
   if (!courseArray) {
