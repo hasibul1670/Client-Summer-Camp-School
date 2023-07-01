@@ -1,6 +1,4 @@
 import { useState } from "react";
-
-import { Calendar } from "antd";
 import AllUsers from "./AllUsers";
 import Assignments from "./Assignments";
 import DiscussionForum from "./DiscussionForum";
@@ -12,6 +10,7 @@ import Profile from "./Profile";
 import Resources from "./Resources";
 import SelectedCourses from "./SelectedCourses";
 import SideBar from "./SideBar";
+import Calendar from "./Calendar";
 
 const DashboardHome = () => {
   const [activeMenu, setActiveMenu] = useState("dashboard");
@@ -36,7 +35,7 @@ const DashboardHome = () => {
     mainContent = <Resources />;
     headerContent = "Resources";
   } else if (activeMenu === "Calendar") {
-    mainContent = <Calendar />;
+    mainContent = <Calendar/>;
     headerContent = "Calendar";
   } else if (activeMenu === "DiscussionForum") {
     mainContent = <DiscussionForum />;

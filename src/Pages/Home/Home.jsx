@@ -16,9 +16,9 @@ const Home = () => {
 
       <Category />
 
-      <FAQ />
-
       <HomeCoursesCategory />
+
+      <FAQ />
     </div>
   );
 };

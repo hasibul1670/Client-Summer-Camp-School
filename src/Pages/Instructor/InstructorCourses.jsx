@@ -2,52 +2,63 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import { useParams } from "react-router-dom";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
-import useInstructor from "../../Hooks/useInstructor";
-import InstructorCard from "../Shared/InstructorCard";
+import useSingleInstructorCourses from "../../Hooks/useSingleInstructorCourses";
+import InstructorCourseCard from "../Shared/InstructorCourseCard";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 
-const SportFitness = () => {
+const InstructorCourses = () => {
+  const { id } = useParams();
   useEffect(() => {
     AOS.init();
   }, []);
 
-  const [instructors, loading] = useInstructor();
-  const instructorsArray = instructors?.data;
+  const [courses, loading, refetch] = useSingleInstructorCourses(id);
+
+
 
   if (loading) {
     return <LoadingSpinner />;
   }
 
-  if (!instructorsArray) {
+  const courseArray = courses?.data;
+
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (!courseArray) {
     return <div>No instructors available.</div>;
   }
 
 
-  if (!Array.isArray(instructorsArray)) {
+  if (!Array.isArray(courseArray)) {
     return <div>No instructors available.</div>;
   }
 
+
+  const instructorName = courseArray[0]?.instructor?.name?.firstName;
+  
   return (
     <div>
       <SectionTitle
         data-aos="fade-right"
         data-aos-duration="7000"
-        heading={"Meet Our instructors"}
+        heading={`Courses of  ${instructorName}`}
       ></SectionTitle>
       <div
         data-aos="fade-up"
         data-aos-duration="2000"
         className="flex justify-center  container mx-auto mb-5    px-4"
       >
-        <Helmet>
-          <title> Sunlight Academy | Instructors🤵‍♀️ </title>
-        </Helmet>
-
         <div className="grid  mt-4 md:grid-cols-2 lg:grid-cols-3  gap-5">
-          {instructorsArray?.map((instructor) => (
-            <InstructorCard key={instructor.id} instructor={instructor} />
+          {courseArray.map((course) => (
+            <InstructorCourseCard
+              key={course._id}
+              course={course}
+            ></InstructorCourseCard>
           ))}
         </div>
       </div>
@@ -55,4 +66,4 @@ const SportFitness = () => {
   );
 };
 
-export default SportFitness;
+export default InstructorCourses;

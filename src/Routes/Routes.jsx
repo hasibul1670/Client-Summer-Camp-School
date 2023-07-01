@@ -19,6 +19,7 @@ import NotFound from "../Pages/Shared/NotFound";
 import SignUp from "../Pages/SignUp/SignUp";
 import Home from "./../Pages/Home/Home";
 import InstructorDetails from "../Pages/Instructor/InstructorDetails";
+import InstructorCourses from "../Pages/Instructor/InstructorCourses";
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
       {
         path: "/instructors/:id",
         element: <InstructorDetails/>,
+      },
+      {
+        path: "/courses/instructor/:id",
+        element: <InstructorCourses/>,
       },
 
       {

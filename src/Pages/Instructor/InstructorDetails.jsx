@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useSingleInstructor from "../../Hooks/useSingleInstructor";
 import image from "../../assets/instructorimg/i1.jpg";
 import LoadingSpinner from "../Shared/LoadingSpinner";
@@ -31,10 +31,15 @@ const InstructorDetails = () => {
                 instructorData.name?.lastName}
             </h1>
 
-            <p className="py-2 text-xl text-blue-400">
+            <p className="py-2 text-lg text-blue-400">
               Expartise:{instructorData.expertise?.primary},
               {instructorData.expertise?.secondary}
             </p>
+            <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+            <h1 className="text-yellow-700 text-lg">
+              Connected with {instructorData.name?.firstName}
+            </h1>
+
             <p className="py-2 text-blue-700 text-xl flex">
               Social Media:{" "}
               <ul className="flex">
@@ -56,9 +61,15 @@ const InstructorDetails = () => {
               </ul>
             </p>
 
-            <button className="btn btn-outline btn-sm">
-              Show {instructorData.name?.firstName} Courses
-            </button>
+            <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+
+       
+       
+            <Link to={`/courses/instructor/${id}`}>
+              <button className="btn btn-outline btn-sm">
+                Show {instructorData.name?.firstName} Courses
+              </button>
+            </Link>
           </div>
         </div>
       </div>
