@@ -1,16 +1,20 @@
-import { Link, useParams } from "react-router-dom";
-
-import image from "../../assets/coursephoto/12.jpg";
-
+/* eslint-disable no-unused-vars */
+import axios from "axios";
+import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
+import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProvider";
+import image from "../../assets/coursephoto/12.jpg";
 import LoadingSpinner from "../Shared/LoadingSpinner";
+import useCart from "./../../Hooks/useCart";
 import useSingleCourses from "./../../Hooks/useSingleCourses";
 
 const SingleCourseCard = () => {
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
-
   const [course, loading] = useSingleCourses(id);
+  const [, refetch] = useCart(); //life lesson  ,,,,, must be entered before refetching
   let courseData;
 
   if (course && course.data && course.data.length > 0) {
@@ -42,6 +46,57 @@ const SingleCourseCard = () => {
       timer: 1500,
     });
   };
+
+  const handleCourseAddToCart = () => {
+    const cartData = {
+      course: courseData?._id,
+      email: user?.email,
+    };
+    const accessToken = localStorage.getItem("token");
+    axios
+      .post("http://localhost:4000/api/v1/cart/create-cart", cartData, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: accessToken,
+        },
+      })
+      .then((response) => {
+        const result = response.data;
+        if (result?.statusCode === 200) {
+          refetch();
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Course is added to cart successfully ! ❤️ ",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((error) => {
+        const code = error?.response?.status;
+        console.log("Hello", error);
+        if (code === 409) {
+          Swal.fire({
+            position: "top-center",
+            icon: "error",
+            title: "This Course is already Added to Cart 😒",
+            showConfirmButton: false,
+            timer: 2500,
+          });
+        } else {
+          Swal.fire({
+            position: "top-center",
+            icon: "error",
+            title: "Something Went Wrong!! 404 😭",
+            showConfirmButton: false,
+            timer: 2500,
+          });
+        }
+      });
+  };
+
   return (
     <div>
       <Helmet>
@@ -103,6 +158,14 @@ const SingleCourseCard = () => {
                 className="btn btn-outline btn-sm  "
               >
                 Enroll Now
+              </button>
+            </Link>
+            <Link>
+              <button
+                onClick={handleCourseAddToCart}
+                className="btn btn-outline btn-secondary btn-sm mx-2  "
+              >
+                Add to Cart
               </button>
             </Link>
 

@@ -1,16 +1,20 @@
+/* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { AuthContext } from "../../Providers/AuthProvider";
+import useCart from "./../../Hooks/useCart";
 
 const NavBar = () => {
+  
   const { user, logOut } = useContext(AuthContext);
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "cupcake"
   );
   const [isDarkMode, setDarkMode] = useState(false);
-
+  const [cart] = useCart();
+  const cartLength = cart?.data?.length;
   useEffect(() => {
     localStorage.setItem("theme", theme);
     const localTheme = localStorage.getItem("theme");
@@ -69,7 +73,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="navbar z-10 bg-opacity-50 max-w-screen-2xl  bg-black	 ">
+    <div className="navbar fixed z-10 bg-opacity-50 max-w-screen-2xl  bg-black	 ">
       <div className="navbar-start">
         <div className="dropdown ">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -95,7 +99,7 @@ const NavBar = () => {
             {navOptions}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
+        <Link to="/" className="btn btn-ghost normal-case text-white text-xl">
           Sunlight{" "}
         </Link>
       </div>
@@ -119,7 +123,9 @@ const NavBar = () => {
         <Link to="/dashboard/mycart">
           <button className="btn btn-ghost mr-2">
             <FaShoppingCart></FaShoppingCart>
-            <div className="badge badge-outline  badge-primary">+ 0</div>
+            <div className="badge badge-outline  badge-primary">
+              + {cartLength || 0}
+            </div>
           </button>
         </Link>
 

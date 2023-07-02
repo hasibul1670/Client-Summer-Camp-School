@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
 const useCourses = () => {
-  
   const {
     data: course = [],
     isLoading: loading,
@@ -15,8 +14,6 @@ const useCourses = () => {
       return res.json();
     },
   });
-
-
 
   return [course, loading, refetch];
 };

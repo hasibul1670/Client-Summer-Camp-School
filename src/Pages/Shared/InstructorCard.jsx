@@ -14,7 +14,7 @@ const InstructorCard = ({ instructor }) => {
       <div className="card-body items-center text-center py-3">
         <h6 className="text-cyan-400 ">Instructor Id : {id}</h6>
         <h6 className="font-bold  ">
-          {name.firstName + " " + name.lastName}
+          {name?.firstName + " " + name?.lastName}
         </h6>
         <p className="font-bold text-cyan-500  text-sm">
           Expertise:{expertise?.primary + " " + expertise?.secondary}
