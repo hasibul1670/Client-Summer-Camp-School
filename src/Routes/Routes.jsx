@@ -20,6 +20,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import Home from "./../Pages/Home/Home";
 import InstructorDetails from "../Pages/Instructor/InstructorDetails";
 import InstructorCourses from "../Pages/Instructor/InstructorCourses";
+import SingleCourseCard from "../Pages/Courses/SingleCourseCard";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: "courses",
         element: <CategoryCard></CategoryCard>,
+      },
+      {
+        path: "courses/:id",
+        element: <SingleCourseCard/>,
       },
       {
         path: "/courses/lifeskills",

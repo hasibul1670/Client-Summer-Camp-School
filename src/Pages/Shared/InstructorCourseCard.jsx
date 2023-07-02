@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 import image from "../../assets/home/404.png";
 const InstructorCourseCard = ({ course }) => {
   const { id, title,role} = course;
@@ -16,7 +17,14 @@ const InstructorCourseCard = ({ course }) => {
 
         <p>$45.95</p>
         <div className="card-actions">
+
+       
+
+
+          <Link to={`/courses/${id}`}>
           <button className="btn  btn-primary  btn-sm">Enroll Now</button>
+        </Link>
+
         </div>
       </div>
     </div>

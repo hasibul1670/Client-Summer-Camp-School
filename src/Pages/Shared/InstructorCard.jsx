@@ -25,6 +25,7 @@ const InstructorCard = ({ instructor }) => {
             Show Details
           </button>
         </Link>
+        
       </div>
     </div>
   );

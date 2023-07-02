@@ -59,7 +59,10 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <p className="text-white font-bold">Copyright © 2023 - All right reserved by Hasibul Islam</p>
+          <p className="text-white font-bold">
+            Copyright © 2023 - All right reserved by
+            <Link className="text-cyan-300 underline" target="_blank" to="https://hasibul-islam365.netlify.app/"> Hasibul Islam</Link>
+          </p>
         </div>
       </footer>
     </div>

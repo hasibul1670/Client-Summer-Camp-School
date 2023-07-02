@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 import image from "../../assets/home/404.png";
 const CourseCard = ({ course }) => {
   const { id, title, startMonth, endMonth, year } = course;
   return (
- 
-      <div className="card w-64 border-solid border-2 border-sky-500 shadow-xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-300">
+    <div className="card w-64 border-solid border-2 border-sky-500 shadow-xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-300">
       <figure className="px-6 pt-2">
         <img src={image} alt="Course" className="rounded-xl" />
       </figure>
@@ -17,9 +17,13 @@ const CourseCard = ({ course }) => {
         </h6>
 
         <p>$45.95</p>
-        <div className="card-actions">
+
+    
+
+        <Link to={`/courses/${id}`}>
           <button className="btn  btn-primary  btn-sm">Enroll Now</button>
-        </div>
+        </Link>
+        
       </div>
     </div>
   );
