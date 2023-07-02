@@ -11,7 +11,6 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Lottie from "lottie-react";
 import login from "../../assets/animation/38435-register.json";
 
-
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,6 +28,7 @@ const Login = () => {
   const mutation = useMutation((userData) => loginUser(userData), {
     onSuccess: (data) => {
       reset();
+
       const token = data.data.accessToken;
       const email = data.data.email;
       localStorage.setItem("token", token);
@@ -68,7 +68,7 @@ const Login = () => {
       </Helmet>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className=" text-center">
+          <div className=" text-center">
             <h1 className="text-5xl font-bold">
               Login <span className="text-blue-500">Here !</span>{" "}
             </h1>
@@ -76,11 +76,9 @@ const Login = () => {
             <div className="w-1/8 mb-10 md:mb-0 mx-auto">
               <Lottie animationData={login} loop={true} />
             </div>
-            
           </div>
 
-
-          <form 
+          <form
             onSubmit={handleSubmit(onSubmit)}
             className="md:hero font-bold "
           >

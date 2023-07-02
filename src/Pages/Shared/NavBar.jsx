@@ -7,7 +7,6 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import useCart from "./../../Hooks/useCart";
 
 const NavBar = () => {
-  
   const { user, logOut } = useContext(AuthContext);
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "cupcake"
@@ -73,7 +72,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="navbar fixed z-10 bg-opacity-50 max-w-screen-2xl  bg-black	 ">
+    <div className="navbar  z-10 bg-opacity-50 max-w-screen-2xl  bg-black	 ">
       <div className="navbar-start">
         <div className="dropdown ">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -120,18 +119,20 @@ const NavBar = () => {
       />
 
       <div className="navbar-end">
-        <Link to="/dashboard/mycart">
-          <button className="btn btn-ghost mr-2">
-            <FaShoppingCart></FaShoppingCart>
-            <div className="badge badge-outline  badge-primary">
-              + {cartLength || 0}
+        <Link to="/dashboard">
+          <button className="btn btn-sm btn-ghost mr-2">
+            <div className="badge badge-outline badge-primary">
+              <span>
+                <FaShoppingCart></FaShoppingCart>
+              </span>
+              <span>{cartLength || 0}</span>
             </div>
           </button>
         </Link>
 
         {user?.email ? (
           <>
-            <button onClick={handleLogOut} className="btn btn-ghost">
+            <button onClick={handleLogOut} className="btn btn-sm btn-ghost">
               LogOut
             </button>
           </>
@@ -139,7 +140,7 @@ const NavBar = () => {
           <>
             <Link to="/login">
               {" "}
-              <button className="btn  btn-primary">Sign In</button>
+              <button className="btn btn-sm btn-primary">Sign In</button>
             </Link>
           </>
         )}

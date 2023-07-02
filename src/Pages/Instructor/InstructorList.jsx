@@ -30,10 +30,10 @@ const SportFitness = () => {
   }
 
   return (
-    <div>
+    <div className="">
       <SectionTitle
         data-aos="fade-right"
-        data-aos-duration="7000"
+        data-aos-duration="1000"
         heading={"Meet Our instructors"}
       ></SectionTitle>
       <div

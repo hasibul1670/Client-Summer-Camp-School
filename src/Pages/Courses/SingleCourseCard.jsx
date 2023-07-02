@@ -54,13 +54,17 @@ const SingleCourseCard = () => {
     };
     const accessToken = localStorage.getItem("token");
     axios
-      .post("http://localhost:4000/api/v1/cart/create-cart", cartData, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: accessToken,
-        },
-      })
+      .post(
+        "https://summer-camp-school-server-sigma.vercel.app/api/v1/cart/create-cart",
+        cartData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: accessToken,
+          },
+        }
+      )
       .then((response) => {
         const result = response.data;
         if (result?.statusCode === 200) {
@@ -76,7 +80,7 @@ const SingleCourseCard = () => {
       })
       .catch((error) => {
         const code = error?.response?.status;
-        console.log("Hello", error);
+
         if (code === 409) {
           Swal.fire({
             position: "top-center",

@@ -13,7 +13,7 @@ import SideBar from "./SideBar";
 import Calendar from "./Calendar";
 
 const DashboardHome = () => {
-  const [activeMenu, setActiveMenu] = useState("dashboard");
+  const [activeMenu, setActiveMenu] = useState("selectedCourses");
 
   const handleMenuClick = (menu) => {
     setActiveMenu(menu);
@@ -59,6 +59,7 @@ const DashboardHome = () => {
 
   return (
     <div className="flex flex-col lg:flex-row ">
+    
       <div className="min-h-screen w-full lg:w-1/6">
         <SideBar activeMenu={activeMenu} onMenuClick={handleMenuClick} />
       </div>

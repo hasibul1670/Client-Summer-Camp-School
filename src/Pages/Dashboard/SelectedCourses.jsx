@@ -19,9 +19,12 @@ const SelectedCourses = () => {
   }
 
   const handleCartItemDelete = (id) => {
-    fetch(`http://localhost:4000/api/v1/cart/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://summer-camp-school-server-sigma.vercel.app/api/v1/cart/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.statusCode === 200) {
