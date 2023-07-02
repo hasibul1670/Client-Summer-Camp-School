@@ -6,9 +6,20 @@ import LoadingSpinner from "../Shared/LoadingSpinner";
 const InstructorDetails = () => {
   const { id } = useParams();
 
-  const [instructordata, loading] = useSingleInstructor(id);
+  const [instructor, loading] = useSingleInstructor(id);
 
-  const instructorData = instructordata.data;
+  let instructorData;
+
+  if (instructor && instructor.data) {
+    instructorData = instructor.data;
+  } else {
+    return (
+      <div>
+        No Course available.
+        <LoadingSpinner />;
+      </div>
+    );
+  }
 
   if (loading) {
     return <LoadingSpinner />;
@@ -26,9 +37,9 @@ const InstructorDetails = () => {
           <div>
             <p className="text-xs font-bold">{id}</p>
             <h1 className="text-xl text-cyan-400 font-bold">
-              {instructorData.name?.firstName +
+              {instructorData?.name?.firstName +
                 " " +
-                instructorData.name?.lastName}
+                instructorData?.name?.lastName}
             </h1>
 
             <p className="py-2 text-lg text-blue-400">
@@ -37,7 +48,7 @@ const InstructorDetails = () => {
             </p>
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
             <h1 className="text-yellow-700 text-lg">
-              Connected with {instructorData.name?.firstName}
+              Connected with {instructorData?.name?.firstName}
             </h1>
 
             <p className="py-2 text-blue-700 text-xl flex">
@@ -63,11 +74,9 @@ const InstructorDetails = () => {
 
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
-       
-       
             <Link to={`/courses/instructor/${id}`}>
               <button className="btn btn-outline btn-sm">
-                Show {instructorData.name?.firstName} Courses
+                Show {instructorData?.name?.firstName} Courses
               </button>
             </Link>
           </div>
