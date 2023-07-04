@@ -9,12 +9,13 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 import Lottie from "lottie-react";
+import useCart from "../../Hooks/useCart";
 import login from "../../assets/animation/38435-register.json";
 
 const Login = () => {
+  const [, refetch] = useCart();
   const navigate = useNavigate();
   const location = useLocation();
-  const [disabled, setDisabled] = useState(true);
   const from = location.state?.from?.pathname || "/";
 
   const { loginUser, setUser } = useContext(AuthContext);
@@ -42,6 +43,7 @@ const Login = () => {
         timer: 1500,
       });
       setUser({ token, email });
+      refetch();
       navigate(from, { replace: true });
     },
     onError: (error) => {

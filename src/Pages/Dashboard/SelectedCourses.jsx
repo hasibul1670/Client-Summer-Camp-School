@@ -2,10 +2,14 @@
 
 import { Toaster, toast } from "react-hot-toast";
 import useCart from "../../Hooks/useCart";
-
 const SelectedCourses = () => {
+  
+
   const [cart, refetch] = useCart();
   const cartsArray = cart?.data;
+
+
+  
 
   //   toast.success('Successfully created!');
   //   toast.error('This is an error!');

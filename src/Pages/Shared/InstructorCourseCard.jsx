@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import image from "../../assets/home/404.png";
 const InstructorCourseCard = ({ course }) => {
   const { id, title,role} = course;
-  console.log('Hello',course.instructor.name.firstName);
   return (
     <div className="card w-64 border-solid border-2 border-sky-500 shadow-xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-300">
       <figure className="px-6 pt-2">

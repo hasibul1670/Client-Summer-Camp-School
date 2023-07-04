@@ -1,13 +1,15 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
+import useCart from "../Hooks/useCart";
+
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const loginUser = async (userData) => {
     setLoading(true);
     const response = await fetch(
@@ -30,8 +32,6 @@ const AuthProvider = ({ children }) => {
 
     return response.json();
   };
-
-
   const createUser = async (userData) => {
     const response = await fetch(
       "https://summer-camp-school-server-sigma.vercel.app/api/v1/students/create-student",
@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
         body: JSON.stringify(userData),
       }
     );
-  
+
     if (response.status === 400) {
       throw new Error("Field is Empty!!!");
     }
@@ -54,11 +54,8 @@ const AuthProvider = ({ children }) => {
       throw new Error("Internal Server Error !! please try again later");
     }
 
-  
     return response.json();
   };
-  
-
   useEffect(() => {
     const accessToken = localStorage.getItem("token");
     const email = localStorage.getItem("email");
@@ -70,6 +67,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     setUser(null);
+
   };
 
   const authInfo = {

@@ -3,17 +3,29 @@ import { useContext, useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
+import { userDataContext } from "../../App";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useCart from "./../../Hooks/useCart";
 
 const NavBar = () => {
+
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!isDropdownOpen);
+  };
+  
   const { user, logOut } = useContext(AuthContext);
+  const [loggInUser] = useContext(userDataContext);
+  const [cart, refetch] = useCart();
+  const cartLength = cart?.data?.length;
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "cupcake"
   );
   const [isDarkMode, setDarkMode] = useState(false);
-  const [cart] = useCart();
-  const cartLength = cart?.data?.length;
+
+  const name2 = loggInUser?.name?.firstName;
+
   useEffect(() => {
     localStorage.setItem("theme", theme);
     const localTheme = localStorage.getItem("theme");
@@ -66,38 +78,70 @@ const NavBar = () => {
   );
 
   const handleLogOut = () => {
-    logOut()
-      .then(() => {})
-      .catch((error) => console.log(error));
+    logOut();
+    refetch();
   };
 
   return (
     <div className="navbar  z-10 bg-opacity-50 max-w-screen-2xl  bg-black	 ">
       <div className="navbar-start">
-        <div className="dropdown ">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+      <div className="dropdown ">
+          {!isDropdownOpen ? (
+            <label
+              tabIndex={0}
+              onClick={toggleDropdown}
+              className="btn btn-ghost   lg:hidden"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-compact bg-black  dropdown-content mt-3 p-2 text-primary font-bold shadow  rounded-box w-52 z-50"
-          >
-            {navOptions}
-          </ul>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </label>
+          ) : (
+            <label
+              tabIndex={0}
+              onClick={toggleDropdown}
+              className="btn btn-ghost  lg:hidden"
+            >
+              <svg
+                xmlns="http://www.w3.org/1990/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="3"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </label>
+          )}
+
+          {isDropdownOpen && (
+            <ul
+              tabIndex={0}
+              className="menu menu-compact bg-black  dropdown-content mt-3 p-2 text-primary font-bold shadow  rounded-box w-52 z-50"
+            >
+              {navOptions}
+            </ul>
+          )}
         </div>
+
+
+
         <Link to="/" className="btn btn-ghost normal-case text-white text-xl">
           Sunlight{" "}
         </Link>
@@ -119,21 +163,27 @@ const NavBar = () => {
       />
 
       <div className="navbar-end">
-        <Link to="/dashboard">
-          <button className="btn btn-sm btn-ghost mr-2">
-            <div className="badge badge-outline badge-primary">
-              <span>
-                <FaShoppingCart></FaShoppingCart>
-              </span>
-              <span>{cartLength || 0}</span>
-            </div>
-          </button>
-        </Link>
-
         {user?.email ? (
           <>
-            <button onClick={handleLogOut} className="btn btn-sm btn-ghost">
-              LogOut
+            <Link to="/dashboard">
+              <button className="btn btn-sm btn-ghost mr-2">
+                <div className="badge badge-outline badge-primary">
+                  <span>
+                    <FaShoppingCart></FaShoppingCart>
+                  </span>
+                  <span>{cartLength || 0}</span>
+                </div>
+              </button>
+            </Link>
+            <Link
+              to="/dashboard"
+              className=" font-bold text-sm text-white  mr-2 "
+            >
+              {name2 || "null"}
+            </Link>
+
+            <button onClick={handleLogOut} className="btn btn-sm btn-outline ">
+              <span className="text-white text-xs">logout</span>
             </button>
           </>
         ) : (
