@@ -6,6 +6,8 @@ import { createContext, useEffect, useState } from "react";
 import { RouterProvider } from "react-router-dom";
 import useAuth from "./Hooks/useAuth";
 import { router } from "./Routes/Routes";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 export const userDataContext = createContext();
 
@@ -40,7 +42,9 @@ const App = () => {
   return (
     <div>
       <userDataContext.Provider value={[loggInUser]}>
+        <Provider store = {store}>
         <RouterProvider router={router} />
+        </Provider>
       </userDataContext.Provider>
     </div>
   );

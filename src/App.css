@@ -3,7 +3,6 @@
   height: auto;
 }
 
-
 .navbar {
   border-bottom: 1px solid #bbbbbb;
 }
@@ -63,5 +62,24 @@
 
 .nav-link-grow-up:hover::before {
   height: 5px;
+}
+
+
+
+/*  */
+
+.drawer-side {
+  background-attachment: fixed;
+}
+
+
+
+.cart-slider-list {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+body.drawer-open {
+  overflow: hidden;
 }
 

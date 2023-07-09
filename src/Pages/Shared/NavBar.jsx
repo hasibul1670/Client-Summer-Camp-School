@@ -6,15 +6,27 @@ import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { userDataContext } from "../../App";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useCart from "./../../Hooks/useCart";
+import CartSlider from "./CartSlider";
 
 const NavBar = () => {
-
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+    document.body.classList.toggle("drawer-open"); 
+  };
+
+  const handleCartSliderClose = () => {
+    setIsDrawerOpen(false);
+    document.body.classList.remove('drawer-open');
+  };
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
   };
-  
+
   const { user, logOut } = useContext(AuthContext);
   const [loggInUser] = useContext(userDataContext);
   const [cart, refetch] = useCart();
@@ -83,9 +95,9 @@ const NavBar = () => {
   };
 
   return (
-    <div className="navbar  z-10 bg-opacity-50 max-w-screen-2xl  bg-black	 ">
+    <div className="navbar fixed  z-10 bg-opacity-50 max-w-screen-2xl  bg-black	 ">
       <div className="navbar-start">
-      <div className="dropdown ">
+        <div className="dropdown ">
           {!isDropdownOpen ? (
             <label
               tabIndex={0}
@@ -140,14 +152,12 @@ const NavBar = () => {
           )}
         </div>
 
-
-
         <Link to="/" className="btn btn-ghost normal-case text-white text-xl">
           Sunlight{" "}
         </Link>
       </div>
 
-      {/* main navbar */}
+
 
       <div className="navbar-center hidden lg:flex">
         <ul className="menu font-bold menu-horizontal px-1 ">{navOptions}</ul>
@@ -165,20 +175,38 @@ const NavBar = () => {
       <div className="navbar-end">
         {user?.email ? (
           <>
-            <Link to="/dashboard">
-              <button className="btn btn-sm btn-ghost mr-2">
-                <div className="badge badge-outline badge-primary">
-                  <span>
-                    <FaShoppingCart></FaShoppingCart>
-                  </span>
-                  <span>{cartLength || 0}</span>
-                </div>
-              </button>
-            </Link>
-            <Link
-              to="/dashboard"
-              className=" font-bold text-sm text-white  mr-2 "
-            >
+      <div className="drawer navbar-end drawer-end mr-5">
+      <input
+        id="my-drawer-4"
+        type="checkbox"
+        className="drawer-toggle"
+        checked={isDrawerOpen}
+        onChange={handleDrawerToggle}
+      />
+      <div className="drawer-content">
+        <label htmlFor="my-drawer-4">
+          <div className="badge badge-outline badge-primary">
+            <span>
+              <FaShoppingCart></FaShoppingCart>
+            </span>
+            <span>{cartLength || 0}</span>
+          </div>
+        </label>
+      </div>
+
+      <div className="drawer-side ">
+        <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+
+        <div className="menu bg-base-300 p-4 w-72 h-full  text-base-content">
+          <ul className="cart-slider-list">
+                   <CartSlider onClose={handleCartSliderClose} />
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+            <Link to="/" className=" font-bold text-sm text-white  mr-2 ">
               {name2 || "null"}
             </Link>
 
