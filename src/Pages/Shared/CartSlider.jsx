@@ -21,7 +21,7 @@ const CartSlider = ({ onClose }) => {
       .then((data) => {
         if (data.statusCode === 200) {
           refetch();
-          toast.success("Removed from Cart !");
+          toast.success("Removed from Cart !!");
         }
       });
   };
