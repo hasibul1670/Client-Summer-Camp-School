@@ -43,8 +43,8 @@ const FAQ = () => {
     AOS.init();
   }, []);
 
-  const durationStep = 200; // Duration increment between each element
-  const initialDuration = 200; // Initial duration for the first element
+  const durationStep = 500;
+  const initialDuration = 200;
 
   const aosProperties = questions.map((question, index) => ({
     property: "fade-up",
@@ -71,7 +71,7 @@ const FAQ = () => {
               data-aos={aosProperties[index]?.property}
               data-aos-duration={aosProperties[index]?.duration}
               tabIndex={0}
-              className="collapse collapse-plus border-2 border-sky-500  m-2 rounded-box"
+              className="collapse collapse-arrow border-2 border-sky-500  m-2 rounded-box"
             >
               <div className="collapse-title text-xl font-semibold">
                 {question.title}

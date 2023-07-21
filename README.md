@@ -3,6 +3,24 @@
 
 Welcome to the Summer Camp School project! This is an e-learning website that provides a platform for organizing and managing summer camp activities and courses online. It offers a range of features for administrators, instructors, and students to enhance the summer camp learning experience.
 
+
+
+#### Git Commit Messages
+
+- feat: Introducing New Features
+- fix: Fixing Bugs
+- chore: Miscellaneous Changes
+- refactor: Code Refactoring
+- docs: Documentation Updates
+- style: Code Formatting
+- test: Testing Updates
+- perf: Performance Improvements
+- ci: Continuous Integration
+- cd: Continuous Deployment
+- build: BuildSystem Updates
+- revert: Reverting Changes
+
+
 ## Features
 
 - User authentication and authorization
