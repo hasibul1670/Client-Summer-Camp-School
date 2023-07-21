@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import { useMutation } from "@tanstack/react-query";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -9,11 +9,9 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 import Lottie from "lottie-react";
-import useCart from "../../Hooks/useCart";
 import login from "../../assets/animation/38435-register.json";
 
 const Login = () => {
-
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -43,7 +41,7 @@ const Login = () => {
         timer: 1500,
       });
       setUser({ token, email });
-     
+
       navigate(from, { replace: true });
     },
     onError: (error) => {

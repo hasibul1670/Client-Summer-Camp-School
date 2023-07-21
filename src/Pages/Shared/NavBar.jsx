@@ -6,8 +6,9 @@ import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { userDataContext } from "../../App";
 import { AuthContext } from "../../Providers/AuthProvider";
 
-import CartSlider from "./CartSlider";
+import { useGetcartQuery } from "../../redux/features/cart/cartApi";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import CartSlider from "./CartSlider";
 
 const NavBar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -18,12 +19,12 @@ const NavBar = () => {
 
   const handleDrawerToggle = () => {
     setIsDrawerOpen(!isDrawerOpen);
-    document.body.classList.toggle("drawer-open"); 
+    document.body.classList.toggle("drawer-open");
   };
 
   const handleCartSliderClose = () => {
     setIsDrawerOpen(false);
-    document.body.classList.remove('drawer-open');
+    document.body.classList.remove("drawer-open");
   };
 
   const toggleDropdown = () => {
@@ -94,23 +95,12 @@ const NavBar = () => {
     logOut();
   };
 
-  
+  const email = localStorage.getItem("email");
+  const { data } = useGetcartQuery(email, {
+    refetchOnMountOrArgChange: true,
+  });
 
-  const cartData = course;
-
-  const totalQuantity = () => {
-    if (!Array.isArray(cartData)) {
-      return 0;
-    }
-
-    let totalQuantity = 0;
-    cartData.forEach((book) => {
-      totalQuantity += book.quantity;
-    });
-
-    return totalQuantity;
-  };
-  
+  const cartData = data?.data;
 
   return (
     <div className="navbar fixed z-20  max-w-screen-2xl bg-gray-600	 ">
@@ -175,8 +165,6 @@ const NavBar = () => {
         </Link>
       </div>
 
-
-
       <div className="navbar-center hidden lg:flex">
         <ul className="menu font-bold menu-horizontal px-1 ">{navOptions}</ul>
       </div>
@@ -193,37 +181,35 @@ const NavBar = () => {
       <div className="navbar-end">
         {user?.email ? (
           <>
-      <div className="drawer navbar-end drawer-end mr-5">
-      <input
-        id="my-drawer-4"
-        type="checkbox"
-        className="drawer-toggle"
-        checked={isDrawerOpen}
-        onChange={handleDrawerToggle}
-      />
-      <div className="drawer-content">
-        <label htmlFor="my-drawer-4">
-          <div className="badge badge-outline badge-primary">
-            <span>
-              <FaShoppingCart></FaShoppingCart>
-            </span>
-            <span>{totalQuantity() || 0}</span>
-          </div>
-        </label>
-      </div>
+            <div className="drawer navbar-end drawer-end mr-5">
+              <input
+                id="my-drawer-4"
+                type="checkbox"
+                className="drawer-toggle"
+                checked={isDrawerOpen}
+                onChange={handleDrawerToggle}
+              />
+              <div className="drawer-content">
+                <label htmlFor="my-drawer-4">
+                  <div className="badge badge-outline badge-primary">
+                    <span>
+                      <FaShoppingCart></FaShoppingCart>
+                    </span>
+                    <span>{cartData?.length || 0}</span>
+                  </div>
+                </label>
+              </div>
 
-      <div className="drawer-side ">
-        <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+              <div className="drawer-side ">
+                <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
 
-        <div className="menu bg-base-300 p-4 w-72 h-full  text-base-content">
-          <ul className="cart-slider-list">
-                   <CartSlider onClose={handleCartSliderClose} />
-
-          </ul>
-        </div>
-      </div>
-      
-    </div>
+                <div className="menu bg-base-300 p-4 w-72 h-full  text-base-content">
+                  <ul className="cart-slider-list">
+                    <CartSlider onClose={handleCartSliderClose} />
+                  </ul>
+                </div>
+              </div>
+            </div>
 
             <Link to="/" className=" font-bold text-sm text-white  mr-2 ">
               {name2 || "null"}

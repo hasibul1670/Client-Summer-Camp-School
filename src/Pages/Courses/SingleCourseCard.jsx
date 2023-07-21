@@ -4,17 +4,17 @@ import { Helmet } from "react-helmet-async";
 import { toast } from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 import image from "../../assets/coursephoto/12.jpg";
-import { addToCart } from "../../redux/features/cart/cartSlice";
 import { useSingleCourseQuery } from "../../redux/features/course/courseApi";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 
-import { useAppDispatch } from "./../../redux/hook";
 import { useState } from "react";
+import { useCreateCartMutation } from "../../redux/features/cart/cartApi";
+import { useAppDispatch } from "./../../redux/hook";
 
 const SingleCourseCard = () => {
   const { id } = useParams();
+  const [createCart] = useCreateCartMutation();
   const [addedToCart, setAddedToCart] = useState(false);
-
 
   let courseData;
 
@@ -23,7 +23,6 @@ const SingleCourseCard = () => {
   const { data: course, isLoading } = useSingleCourseQuery(id, {
     refetchOnMountOrArgChange: true,
   });
-
 
   if (course && course.data && course.data.length > 0) {
     courseData = course.data[0];
@@ -40,12 +39,25 @@ const SingleCourseCard = () => {
   }
   const instructorId = courseData?.instructor?.id;
   courseData = course.data[0];
-  const handleAddBook = (courseData) => {
-    dispatch(addToCart(courseData));
-    toast.success("Product Added to Cart Successfully!");
-    setAddedToCart(true);
 
+  const email = localStorage.getItem("email");
+
+  const handleAddToCart = async (course) => {
+    try {
+      const options = {
+        data: { course: course, email: email },
+      };
+      const result = await createCart(options).unwrap();
+      if (result.statusCode === 200) {
+        setAddedToCart(true);
+        toast.success("Course is Added to Cart Successfully!");
+      }
+    } catch (error) {
+      toast.error("THis Course is Already Added to Cart ");
+      setAddedToCart(true);
+    }
   };
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -98,19 +110,21 @@ const SingleCourseCard = () => {
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
             {addedToCart ? (
-      <Link to="/dashboard" className="btn btn-primary btn-sm mx-2     
-      ">
-        Go to Cart
-      </Link>
-    ) : (
-      <button
-        onClick={() => handleAddBook(courseData)}
-        className="btn btn-primary btn-sm mx-2"
-      >
-        Add to Cart
-      </button>
-)}
-     
+              <Link
+                to="/dashboard"
+                className="btn btn-primary btn-sm mx-2     
+      "
+              >
+                Go to Cart
+              </Link>
+            ) : (
+              <button
+                onClick={() => handleAddToCart(courseData)}
+                className="btn btn-primary btn-sm mx-2"
+              >
+                Add to Cart
+              </button>
+            )}
 
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
           </div>
