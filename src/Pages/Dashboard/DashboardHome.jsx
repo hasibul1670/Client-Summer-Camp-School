@@ -66,7 +66,7 @@ const DashboardHome = () => {
     <SideBar activeMenu={activeMenu} onMenuClick={handleMenuClick} />
   </div>
 
-  <div className="bg-gray-200 flex-grow">
+  <div className="bg-gray-200 flex-grow ">
     <header className="bg-blue-200 shadow-md p-4">
       <h1 className="text-blue-800 font-bold text-xl">{headerContent}</h1>
     </header>
