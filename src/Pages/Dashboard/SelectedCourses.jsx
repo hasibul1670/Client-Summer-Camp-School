@@ -1,26 +1,37 @@
 /* eslint-disable no-unused-vars */
 
+
 import { Toaster, toast } from "react-hot-toast";
-import useCart from "../../Hooks/useCart";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { removeFromCart } from "../../redux/features/cart/cartSlice";
 const SelectedCourses = () => {
   
 
-  const [cart, refetch] = useCart();
-  const cartsArray = cart?.data;
+  const { course, total } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+  const cartData = course;
+
+  const totalQuantity = () => {
+    if (!Array.isArray(cartData)) {
+      return 0;
+    }
+
+    let totalQuantity = 0;
+    cartData.forEach((book) => {
+      totalQuantity += book.quantity;
+    });
+
+    return totalQuantity;
+  };
+
+  const handleRemoveBookFromCart = (book) => {
+    dispatch(removeFromCart(book));
+    toast.success("Book Delete From Cart!!");
+  };
 
 
-  
 
-  //   toast.success('Successfully created!');
-  //   toast.error('This is an error!');
 
-  if (!cartsArray) {
-    return <div>No carts available.</div>;
-  }
-
-  if (!Array.isArray(cartsArray)) {
-    return <div>No instructors available.</div>;
-  }
 
   const handleCartItemDelete = (id) => {
     fetch(
@@ -32,35 +43,37 @@ const SelectedCourses = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.statusCode === 200) {
-          refetch();
+        
           toast.success("Successfully  Deleted !");
         }
       });
   };
 
   return (
-    <div>
-      <div className="flex justify-center  container mx-auto mb-5    px-4">
-        <div className="grid  mt-4 md:grid-cols-2 text-black  lg:grid-cols-3  gap-5">
-          {cart &&
-            cart.data?.map((instructor) => (
-              <div key={instructor._id} className="border-3 border-red-800 p-5">
-                <h1>{instructor.email}</h1>
-                <p> {instructor?.course?.title}</p>
-                <button
-                  onClick={() => handleCartItemDelete(instructor._id)}
-                  className="btn btn-primary"
-                >
-                  {" "}
-                  Delete
-                </button>
-              </div>
-            ))}
-        </div>
-      </div>
+    <div className="bg-gray-100 min-h-screen py-8">
+    <div className="container mx-auto">
+      <h1 className="text-2xl font-bold mb-6 text-center">Checkout</h1>
 
-      <Toaster />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {cartData &&
+          cartData?.map((course) => (
+            
+            <div key={course._id} className="bg-white rounded-lg p-5 shadow-md">
+                 <p className="mt-2">{course?.id}</p>
+              <h1 className="text-xl font-semibold">{course.title}</h1>
+              <p className="mt-2 text-cyan-700">price:{course?.price}$</p>
+              <button
+                onClick={() => handleCartItemDelete(course._id)}
+                className="mt-4 w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition-colors duration-300"
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+      </div>
     </div>
+    <Toaster />
+  </div>
   );
 };
 

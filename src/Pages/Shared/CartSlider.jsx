@@ -1,29 +1,44 @@
 /* eslint-disable react/prop-types */
-import { AiFillDelete, AiOutlineClose } from "react-icons/ai";
 
-import useCart from "../../Hooks/useCart";
-import { Toaster, toast } from "react-hot-toast";
+import {
+  AiFillDelete,
+  AiOutlineClose,
+  AiOutlineMinusCircle,
+  AiOutlinePlusSquare,
+} from "react-icons/ai";
+
+import { toast } from "react-hot-toast";
+import {
+  addToCart,
+  removeFromCart,
+  removeOne,
+} from "../../redux/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
 
 const CartSlider = ({ onClose }) => {
   const handleClose = () => {
     onClose();
   };
-  const [cart, refetch] = useCart();
+  const { course, total } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+  const cartData = course;
 
-  const handleCartItemDelete = (id) => {
-    fetch(
-      `https://summer-camp-school-server-sigma.vercel.app/api/v1/cart/${id}`,
-      {
-        method: "DELETE",
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.statusCode === 200) {
-          refetch();
-          toast.success("Removed from Cart !!");
-        }
-      });
+  const totalQuantity = () => {
+    if (!Array.isArray(cartData)) {
+      return 0;
+    }
+
+    let totalQuantity = 0;
+    cartData.forEach((book) => {
+      totalQuantity += book.quantity;
+    });
+
+    return totalQuantity;
+  };
+
+  const handleRemoveBookFromCart = (book) => {
+    dispatch(removeFromCart(book));
+    toast.success("Book Delete From Cart!!");
   };
 
   return (
@@ -31,28 +46,46 @@ const CartSlider = ({ onClose }) => {
       <button onClick={handleClose} className="text-xl btn-outline">
         <AiOutlineClose />
       </button>
+      <h2 className="text-red-500 text-sm">Total Items: {totalQuantity()}</h2>
       <div className=" mt-4 gap-5">
-        {cart &&
-          cart.data?.map((cart) => (
+        <h1 className="font-bold text-cyan-700">Total: {total?.toFixed(2)}</h1>
+        {cartData &&
+          cartData?.map((cart) => (
             <div key={cart._id} className="border-b-2 border-sky-500 p-5">
-              <p> {cart?.course?.id}</p>
-              <p className="text-cyan-700 font-bold ">
+              <div className="border-r pr-20 shrink-0">
+                <img src={cart?.bookImage} alt="" className="h-full" />
+              </div>
+              <p className="text-cyan-700 font-bold "> {cart?.title}</p>
+              <p className=" font-bold ">
                 {" "}
-                {cart?.course?.title}
+                price: {(cart.price * cart.quantity).toFixed(2)}$
               </p>
-              <p className=" font-bold "> price:{cart?.course?.price}$</p>
+              <p>Quantity: {cart.quantity}</p>
               <button
-                onClick={() => handleCartItemDelete(cart._id)}
-                className="text-xl btn-outline"
+                onClick={() => dispatch(addToCart(cart))}
+                className="text-2xl btn-outline mr-5"
+              >
+                <AiOutlinePlusSquare />
+              </button>
+
+              <button
+                onClick={() => dispatch(removeOne(cart))}
+                className="text-2xl btn-outline ml-5"
+              >
+                <AiOutlineMinusCircle />
+              </button>
+
+              <button
+                onClick={() => handleRemoveBookFromCart(cart)}
+                className="text-2xl btn-outline ml-10"
               >
                 <AiFillDelete />
               </button>
             </div>
           ))}
 
-        <p className="text-xl font-bold text-blue-600">Total Price : 1500 $</p>
+        <p className="text-xl font-bold text-blue-600"></p>
       </div>
-      <Toaster />
     </div>
   );
 };

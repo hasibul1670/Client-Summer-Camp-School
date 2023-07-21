@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-import useCart from "../Hooks/useCart";
+
 
 
 export const AuthContext = createContext(null);

@@ -26,7 +26,7 @@ const AcademicEnrichment = () => {
   const filteredCourses = courseArray.filter((course) => course.category === 'academic');
 
   return (
-    <div>
+    <div className="py-20">
       <SectionTitle
         data-aos="fade-right"
         data-aos-duration="7000"

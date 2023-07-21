@@ -21,7 +21,7 @@ const CourseCard = ({ course }) => {
     
 
         <Link to={`/courses/${id}`}>
-          <button className="btn  btn-primary  btn-sm">Enroll Now</button>
+          <button className="btn  btn-primary  btn-sm">Show Detail</button>
         </Link>
         
       </div>

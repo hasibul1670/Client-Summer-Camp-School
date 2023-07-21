@@ -1,21 +1,29 @@
 /* eslint-disable no-unused-vars */
-import axios from "axios";
-import { useContext } from "react";
+
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
-import Swal from "sweetalert2";
-import { AuthContext } from "../../Providers/AuthProvider";
 import image from "../../assets/coursephoto/12.jpg";
+import { addToCart } from "../../redux/features/cart/cartSlice";
+import { useSingleCourseQuery } from "../../redux/features/course/courseApi";
 import LoadingSpinner from "../Shared/LoadingSpinner";
-import useCart from "./../../Hooks/useCart";
-import useSingleCourses from "./../../Hooks/useSingleCourses";
+
+import { useAppDispatch } from "./../../redux/hook";
+import { useState } from "react";
 
 const SingleCourseCard = () => {
-  const { user } = useContext(AuthContext);
   const { id } = useParams();
-  const [course, loading] = useSingleCourses(id);
-  const [, refetch] = useCart(); //life lesson  ,,,,, must be entered before refetching
+  const [addedToCart, setAddedToCart] = useState(false);
+
+
   let courseData;
+
+  const dispatch = useAppDispatch();
+
+  const { data: course, isLoading } = useSingleCourseQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
+
 
   if (course && course.data && course.data.length > 0) {
     courseData = course.data[0];
@@ -27,82 +35,22 @@ const SingleCourseCard = () => {
       </div>
     );
   }
-
-  if (loading) {
-    return <LoadingSpinner />;
-  }
-
   if (!courseData) {
     return <div>No Course available.</div>;
   }
   const instructorId = courseData?.instructor?.id;
+  courseData = course.data[0];
+  const handleAddBook = (courseData) => {
+    dispatch(addToCart(courseData));
+    toast.success("Product Added to Cart Successfully!");
+    setAddedToCart(true);
 
-  const handleCourseEnrolled = () => {
-    Swal.fire({
-      position: "top-center",
-      icon: "success",
-      title: "Enrolled successfully.",
-      showConfirmButton: false,
-      timer: 1500,
-    });
   };
-
-  const handleCourseAddToCart = () => {
-    const cartData = {
-      course: courseData?._id,
-      email: user?.email,
-    };
-    const accessToken = localStorage.getItem("token");
-    axios
-      .post(
-        "https://summer-camp-school-server-sigma.vercel.app/api/v1/cart/create-cart",
-        cartData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: accessToken,
-          },
-        }
-      )
-      .then((response) => {
-        const result = response.data;
-        if (result?.statusCode === 200) {
-          refetch();
-          Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Course is added to cart successfully ! ❤️ ",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      })
-      .catch((error) => {
-        const code = error?.response?.status;
-
-        if (code === 409) {
-          Swal.fire({
-            position: "top-center",
-            icon: "error",
-            title: "This Course is already Added to Cart 😒",
-            showConfirmButton: false,
-            timer: 2500,
-          });
-        } else {
-          Swal.fire({
-            position: "top-center",
-            icon: "error",
-            title: "Something Went Wrong!! 404 😭",
-            showConfirmButton: false,
-            timer: 2500,
-          });
-        }
-      });
-  };
-
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
   return (
-    <div>
+    <div className="py-20">
       <Helmet>
         <title>Course | {courseData.title}</title>
       </Helmet>
@@ -114,11 +62,9 @@ const SingleCourseCard = () => {
             <h1 className="text-xl text-cyan-400 font-bold">
               {courseData.title}
             </h1>
-
             <p className=" text-md font-semibold ">
               Category : {courseData.category}
             </p>
-
             <p className=" text-md font-semibold ">
               Instructor :{" "}
               <Link
@@ -128,15 +74,12 @@ const SingleCourseCard = () => {
                 {courseData?.instructor?.name?.firstName}
               </Link>
             </p>
-
             <p className=" text-md font-semibold ">
               Course Duration : {courseData.startMonth} to {courseData.endMonth}
             </p>
-
             <p className=" text-md font-semibold ">
               Price : {courseData.price}$
             </p>
-
             <p className=" text-md font-semibold ">
               Description :{" "}
               <span className="text-sm text-cyan-800">
@@ -149,29 +92,25 @@ const SingleCourseCard = () => {
                 environment that fosters personal growth and development.
               </span>
             </p>
-
             <p className=" text-md font-semibold ">
               Rating : {courseData.rating}
             </p>
-
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
-            <Link>
-              <button
-                onClick={handleCourseEnrolled}
-                className="btn btn-outline btn-sm  "
-              >
-                Enroll Now
-              </button>
-            </Link>
-            <Link>
-              <button
-                onClick={handleCourseAddToCart}
-                className="btn btn-outline btn-secondary btn-sm mx-2  "
-              >
-                Add to Cart
-              </button>
-            </Link>
+            {addedToCart ? (
+      <Link to="/dashboard" className="btn btn-primary btn-sm mx-2     
+      ">
+        Go to Cart
+      </Link>
+    ) : (
+      <button
+        onClick={() => handleAddBook(courseData)}
+        className="btn btn-primary btn-sm mx-2"
+      >
+        Add to Cart
+      </button>
+)}
+     
 
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
           </div>

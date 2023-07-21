@@ -26,7 +26,7 @@ const SportFitness = () => {
   const filteredCourses = courseArray.filter((course) => course.category === 'sport');
 
   return (
-    <div>
+    <div className="py-20">
       <SectionTitle
         data-aos="fade-right"
         data-aos-duration="7000"

@@ -58,12 +58,12 @@ const CategoryCard = () => {
   ];
 
   return (
-    <div className="flex justify-center px-4 ">
+    <div className="flex justify-center px-4">
       <Helmet>
         <title> Sunlight Academy | Courses </title>
       </Helmet>
 
-      <div className=" py-4">
+      <div className=" py-20 ">
         <SectionTitle
           data-aos="fade-right"
           data-aos-duration="7000"

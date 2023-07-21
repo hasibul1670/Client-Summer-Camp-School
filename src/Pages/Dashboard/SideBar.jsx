@@ -34,7 +34,7 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
       <div
         className={`${
           isDrawerOpen ? "block" : "hidden"
-        } bg-gray-900 font-bold text-cyan-500 min-h-screen w-full lg:w-auto lg:block lg:relative`}
+        } bg-gray-700 font-bold text-cyan-500 min-h-screen w-full lg:w-auto lg:block lg:relative`}
       >
         <nav className="p-4">
           <ul className="space-y-2">

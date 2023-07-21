@@ -15,7 +15,6 @@ const Art = () => {
   const [courses, loading, refetch] = useCourses();
   const courseArray = courses?.data?.data;
   if (loading) {
-    // Handle loading state
     return <LoadingSpinner/>;
   }
 
@@ -26,7 +25,7 @@ const Art = () => {
   const filteredCourses = courseArray.filter((course) => course.category === 'art');
 
   return (
-    <div>
+    <div className="py-20">
       <SectionTitle
         data-aos="fade-right"
         data-aos-duration="7000"

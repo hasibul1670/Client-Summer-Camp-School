@@ -28,7 +28,7 @@ const Specialized = () => {
 
 
     return (
-    <div>
+      <div className="py-20">
       <SectionTitle
         data-aos="fade-right"
         data-aos-duration="7000"

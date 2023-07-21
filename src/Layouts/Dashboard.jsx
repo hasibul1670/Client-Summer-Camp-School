@@ -1,19 +1,17 @@
-
-
-import { Outlet } from 'react-router-dom';
-import Footer from '../Pages/Shared/Footer';
-import DashboardHome from '../Pages/Dashboard/DashboardHome';
-
+import { Outlet } from "react-router-dom";
+import DashboardHome from "../Pages/Dashboard/DashboardHome";
+import Footer from "../Pages/Shared/Footer";
+import NavBar from "../Pages/Shared/NavBar";
 
 const Dashboard = () => {
   return (
     <div>
-        <div>
-          <DashboardHome/>
-          <Outlet></Outlet>
-         <Footer></Footer>
+      <div>
+        <NavBar></NavBar>
+        <DashboardHome />
+        <Outlet></Outlet>
+        <Footer></Footer>
       </div>
-      
     </div>
   );
 };

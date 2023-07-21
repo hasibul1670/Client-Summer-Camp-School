@@ -8,6 +8,7 @@ import useAuth from "./Hooks/useAuth";
 import { router } from "./Routes/Routes";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { Toaster } from "react-hot-toast";
 
 export const userDataContext = createContext();
 
@@ -45,6 +46,7 @@ const App = () => {
         <Provider store = {store}>
         <RouterProvider router={router} />
         </Provider>
+        <Toaster/>
       </userDataContext.Provider>
     </div>
   );

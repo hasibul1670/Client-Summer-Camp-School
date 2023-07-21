@@ -24,33 +24,27 @@ const SportFitness = () => {
     return <div>No instructors available.</div>;
   }
 
-
   if (!Array.isArray(instructorsArray)) {
     return <div>No instructors available.</div>;
   }
 
   return (
-    <div className="">
-      <SectionTitle
-        data-aos="fade-right"
-        data-aos-duration="1000"
-        heading={"Meet Our instructors"}
-      ></SectionTitle>
-      <div
-        data-aos="fade-up"
-        data-aos-duration="2000"
-        className="flex justify-center  container mx-auto mb-5    px-4"
-      >
-        <Helmet>
-          <title> Sunlight Academy | Instructors🤵‍♀️ </title>
-        </Helmet>
+    <div className=" flex  justify-center">
+      <Helmet>
+        <title> Sunlight Academy | Instructors🤵‍♀️ </title>
+      </Helmet>
 
-        <div className="grid  mt-4 md:grid-cols-2 lg:grid-cols-3  gap-5">
+      <div data-aos="fade-up" data-aos-duration="2000" className="py-20  ">
+        <SectionTitle
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          heading={"Meet Our instructors"}
+        ></SectionTitle>
+
+        <div className="  p-5  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
           {instructorsArray?.map((instructor) => (
             <InstructorCard key={instructor.id} instructor={instructor} />
           ))}
-
-          
         </div>
       </div>
     </div>

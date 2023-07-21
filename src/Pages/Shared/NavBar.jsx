@@ -5,13 +5,16 @@ import { Link } from "react-router-dom";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { userDataContext } from "../../App";
 import { AuthContext } from "../../Providers/AuthProvider";
-import useCart from "./../../Hooks/useCart";
+
 import CartSlider from "./CartSlider";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
 
 const NavBar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { course, total } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
 
   const handleDrawerToggle = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -29,8 +32,6 @@ const NavBar = () => {
 
   const { user, logOut } = useContext(AuthContext);
   const [loggInUser] = useContext(userDataContext);
-  const [cart, refetch] = useCart();
-  const cartLength = cart?.data?.length;
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "cupcake"
   );
@@ -91,11 +92,28 @@ const NavBar = () => {
 
   const handleLogOut = () => {
     logOut();
-    refetch();
   };
 
+  
+
+  const cartData = course;
+
+  const totalQuantity = () => {
+    if (!Array.isArray(cartData)) {
+      return 0;
+    }
+
+    let totalQuantity = 0;
+    cartData.forEach((book) => {
+      totalQuantity += book.quantity;
+    });
+
+    return totalQuantity;
+  };
+  
+
   return (
-    <div className="navbar fixed  z-10 bg-opacity-50 max-w-screen-2xl  bg-black	 ">
+    <div className="navbar fixed z-20  max-w-screen-2xl bg-gray-600	 ">
       <div className="navbar-start">
         <div className="dropdown ">
           {!isDropdownOpen ? (
@@ -189,7 +207,7 @@ const NavBar = () => {
             <span>
               <FaShoppingCart></FaShoppingCart>
             </span>
-            <span>{cartLength || 0}</span>
+            <span>{totalQuantity() || 0}</span>
           </div>
         </label>
       </div>
@@ -204,6 +222,7 @@ const NavBar = () => {
           </ul>
         </div>
       </div>
+      
     </div>
 
             <Link to="/" className=" font-bold text-sm text-white  mr-2 ">
