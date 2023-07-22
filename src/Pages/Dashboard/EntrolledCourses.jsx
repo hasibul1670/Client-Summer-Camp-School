@@ -17,9 +17,12 @@ const EntrolledCourses = () => {
   });
 
   const handleCartItemDelete = async (id) => {
-    fetch(`http://localhost:4000/api/v1/cart/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://summer-camp-school-server-sigma.vercel.app/api/v1/cart/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.statusCode === 200) {
@@ -44,7 +47,7 @@ const EntrolledCourses = () => {
     });
   };
 
-  const filteredData = data?.data?.filter((course) =>course.enrolled);
+  const filteredData = data?.data?.filter((course) => course.enrolled);
 
   let totalPrice = 0;
   if (filteredData?.length > 0) {
@@ -69,7 +72,7 @@ const EntrolledCourses = () => {
                   className="bg-white card w-full  rounded-lg p-5 shadow-md"
                 >
                   <>
-                  <div className="flex justify-between">
+                    <div className="flex justify-between">
                       <p className="mt-2">{course.course?.id}</p>
                       <button
                         onClick={() => handleCartItemDelete(course?._id)}
@@ -84,13 +87,17 @@ const EntrolledCourses = () => {
                     <h1 className="font-semibold">
                       category: {course?.course?.category}
                     </h1>
-                  
-                    <progress className="progress m-2 progress-info w-72" value="10" max="100"></progress> 
+
+                    <progress
+                      className="progress m-2 progress-info w-72"
+                      value="10"
+                      max="100"
+                    ></progress>
                     <Link
                       className="border-1 flex justify-center rounded bg-teal-400 p-1"
                       to={`/courses/${course.course?.id}`}
                     >
-                     Continue Course
+                      Continue Course
                     </Link>
                   </>
                 </div>
