@@ -63,17 +63,6 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
             <li>
               <Link
                 className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "Grades" ? "bg-cyan-700 text-white"  : ""
-                }`}
-                onClick={() => handleMenuItemClick("Grades")}
-              >
-                <small className="">Grades</small>
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
                   activeMenu === "Calendar" ? "bg-cyan-700 text-white"  : ""
                 }`}
                 onClick={() => handleMenuItemClick("Calendar")}

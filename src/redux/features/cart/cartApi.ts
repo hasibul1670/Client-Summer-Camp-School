@@ -23,23 +23,23 @@ const cartApi = api.injectEndpoints({
       }),
     }),
 
-    updatecart: builder.mutation({
-      query: ({ email, cartItemId, finishedReading }) => ({
-        url: `/cart`,
+    updateCart: builder.mutation({
+      query: ({ email,enrolled }) => ({
+        url: `/cart/update`,
         method: "PATCH",
         body: {
+          enrolled: enrolled,
           email: email,
-          cartItemId: cartItemId,
-          finishedReading: finishedReading,
         },
       }),
     }),
   }),
 });
 
+
 export const {
   useCreateCartMutation,
   useDeleteWishMutation,
   useGetcartQuery,
-  useUpdatecartMutation,
+  useUpdateCartMutation,
 } = cartApi;

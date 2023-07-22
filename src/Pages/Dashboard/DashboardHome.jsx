@@ -5,7 +5,6 @@ import Calendar from "./Calendar";
 import DiscussionForum from "./DiscussionForum";
 import Enrollments from "./Enrollments";
 import EntrolledCourses from "./EntrolledCourses";
-import Grades from "./Grades";
 import HelpSupport from "./HelpSupport";
 import Profile from "./Profile";
 import Resources from "./Resources";
@@ -28,9 +27,6 @@ const DashboardHome = () => {
   } else if (activeMenu === "selectedCourses") {
     mainContent = <SelectedCourses />;
     headerContent = "Selected Courses";
-  } else if (activeMenu === "Grades") {
-    mainContent = <Grades />;
-    headerContent = "Grades";
   } else if (activeMenu === "Resources") {
     mainContent = <Resources />;
     headerContent = "Resources";
@@ -58,28 +54,20 @@ const DashboardHome = () => {
   }
 
   return (
+    <div className="flex py-20 flex-col lg:flex-row">
+      <div className="h-screen lg:w-1/6 drawer-overlay overflow-y-auto">
+        {/* Sidebar content goes here */}
+        <SideBar activeMenu={activeMenu} onMenuClick={handleMenuClick} />
+      </div>
 
+      <div className="bg-gray-200 flex-grow ">
+        <header className="bg-blue-200 shadow-md p-4">
+          <h1 className="text-blue-800 font-bold text-xl">{headerContent}</h1>
+        </header>
 
-<div className="flex py-20 flex-col lg:flex-row">
-  <div className="h-screen lg:w-1/6 drawer-overlay overflow-y-auto">
-    {/* Sidebar content goes here */}
-    <SideBar activeMenu={activeMenu} onMenuClick={handleMenuClick} />
-  </div>
-
-  <div className="bg-gray-200 flex-grow ">
-    <header className="bg-blue-200 shadow-md p-4">
-      <h1 className="text-blue-800 font-bold text-xl">{headerContent}</h1>
-    </header>
-
-    <main className="p-4">{mainContent}</main>
-  </div>
-</div>
-
-
-
-
-
-
+        <main className="p-4">{mainContent}</main>
+      </div>
+    </div>
   );
 };
 
