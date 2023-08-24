@@ -33,8 +33,8 @@ Welcome to the Summer Camp School project! This is an e-learning website that pr
 
 ## Technologies Used
 
-- Frontend: HTML, CSS, JavaScript,Tailwind CSS,
-- Backend: Node.js, Express.js,Typescript
+- Frontend:React,Redux,Tailwind CSS,
+- Backend: Node.js,Express.js,Typescript
 - Database: MongoDB
 - Deployment: Vercel
 - Authentication: JWT
