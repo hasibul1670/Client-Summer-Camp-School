@@ -3,8 +3,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 
-
-
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
@@ -66,8 +64,8 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     localStorage.removeItem("token");
     localStorage.removeItem("email");
-    setUser(null);
 
+    setUser(null);
   };
 
   const authInfo = {

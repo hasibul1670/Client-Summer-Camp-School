@@ -41,7 +41,6 @@ const Login = () => {
         timer: 1500,
       });
       setUser({ token, email });
-
       navigate(from, { replace: true });
     },
     onError: (error) => {

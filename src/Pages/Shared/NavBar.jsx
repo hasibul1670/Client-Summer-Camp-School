@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
-import { userDataContext } from "../../App";
+import { loggedInContext, userDataContext } from "../../App";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 import { useGetcartQuery } from "../../redux/features/cart/cartApi";
@@ -11,8 +12,9 @@ import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import CartSlider from "./CartSlider";
 
 const NavBar = () => {
+  const { loggedIn, setLoggedIn } = useContext(loggedInContext);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-
+  console.log("Hello ----", loggedIn);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { course, total } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
@@ -93,6 +95,7 @@ const NavBar = () => {
 
   const handleLogOut = () => {
     logOut();
+    setLoggedIn(false);
   };
 
   const email = localStorage.getItem("email");
@@ -159,6 +162,9 @@ const NavBar = () => {
             </ul>
           )}
         </div>
+        {loggedIn ? (
+          <button className="btn btn-primary "> Hello LoggedIn</button>
+        ) : null}
 
         <Link to="/" className="btn btn-ghost normal-case text-white text-xl">
           Sunlight{" "}

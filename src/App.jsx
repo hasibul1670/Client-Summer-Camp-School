@@ -1,22 +1,25 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import useAuth from "./Hooks/useAuth";
 import { router } from "./Routes/Routes";
-import { Provider } from "react-redux";
 import store from "./redux/store";
-import { Toaster } from "react-hot-toast";
 
 export const userDataContext = createContext();
+export const loggedInContext = createContext();
 
 const App = () => {
   const { user } = useAuth();
   const [loggInUser, setLoggInUser] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const token = localStorage.getItem("token");
+  const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       if (user && user.email) {
@@ -40,14 +43,30 @@ const App = () => {
     fetchData();
   }, [user]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (token) {
+        setLoading(true);
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+      setLoading(false);
+    };
+    fetchData();
+  }, [token]);
+
+
   return (
     <div>
-      <userDataContext.Provider value={[loggInUser]}>
-        <Provider store = {store}>
-        <RouterProvider router={router} />
-        </Provider>
-        <Toaster/>
-      </userDataContext.Provider>
+      <loggedInContext.Provider value={{ loggedIn, setLoggedIn }}>
+        <userDataContext.Provider value={[loggInUser]}>
+          <Provider store={store}>
+            <RouterProvider router={router} />
+          </Provider>
+          <Toaster />
+        </userDataContext.Provider>
+      </loggedInContext.Provider>
     </div>
   );
 };
